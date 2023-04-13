@@ -55,6 +55,14 @@ fn main() {
 		Some("pan")			|
 		Some("pansexual")	=>	flag::pansexual(small),
 
+
+		Some("sex-and-magic")|
+		Some("baker")		 |
+		Some("gilbert")		=>	flag::gilbert(small),
+
+		Some("philly")		|
+		Some("philadelphia")=>	flag::philadelphia(small),
+
 		_ => { help_text(); exit(1) }
 	}
 }
