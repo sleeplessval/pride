@@ -1,7 +1,4 @@
-use std::{
-	io,
-	io::Write
-};
+use std::io::{ self, Write };
 
 use termion::{
 	terminal_size,
@@ -10,10 +7,10 @@ use termion::{
 	color::{ Fg, Rgb },
 	cursor,
 	input::TermRead,
-	raw::IntoRawMode,
-	style
+	raw::IntoRawMode
 };
 
+use crate::color::RESET;
 use crate::flag::BLOCK;
 
 pub fn draw(colors: &[Fg<Rgb>]) {
@@ -28,7 +25,6 @@ pub fn draw(colors: &[Fg<Rgb>]) {
 	stdout.flush().ok();
 
 	let stripe = BLOCK.repeat(width as usize);
-	let reset = style::Reset;
 
 	let mut index = 0;
 	for n in 0..(height as usize) {
@@ -38,7 +34,7 @@ pub fn draw(colors: &[Fg<Rgb>]) {
 		}
 		write!(
 			stdout,
-			"{color}{stripe}{reset}",
+			"{color}{stripe}{RESET}",
 			color = colors[index]
 		).ok();
 	}

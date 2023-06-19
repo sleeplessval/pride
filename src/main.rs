@@ -2,6 +2,7 @@ use std::process::exit;
 
 use pico_args::Arguments;
 
+mod color;
 mod draw;
 mod flag;
 
@@ -32,6 +33,8 @@ fn main() {
 		Some("transgender")	=>	flag::transgender(small),
 
 
+		Some("agender")		=>	flag::agender(small),
+
 		Some("aro")			|
 		Some("aromantic")	=>	flag::aromantic(small),
 
@@ -42,6 +45,10 @@ fn main() {
 
 		Some("bi")			|
 		Some("bisexual")	=>	flag::bisexual(small),
+
+		Some("genderfluid")	=>	flag::genderfluid(small),
+
+		Some("genderqueer")	=>	flag::genderqueer(small),
 
 		Some("gendervoid")	=>	flag::gendervoid(small),
 
@@ -86,6 +93,7 @@ fn list_text() {
 	println!("   bigender               bigender pride flag");
 	println!("   bi, bisexual           bisexual pride flag");
 	println!("   gay, pride             six-color rainbow flag");
+	println!("   genderqueer            genderqueer pride flag");
 	println!("   gendervoid             gendervoid pride flag");
 	println!("   lesbian                lesbian pride flag");
 	println!("   multigender            multigender pride flag");
