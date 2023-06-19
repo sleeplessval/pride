@@ -120,7 +120,12 @@ pub fn genderfluid(small: bool) {
 	let blue	= color::Fg(color::Rgb(0x33, 0x3E, 0xBD));
 
 	if small {
-		
+		let width = 15;
+
+		println!(
+			"{pink}{stripe}\n{WHITE}{stripe}\n{violet}{stripe}\n{BLACK}{stripe}\n{blue}{stripe}",
+			stripe = BLOCK.repeat(width)
+		);
 	} else { draw(&[pink, WHITE, violet, BLACK, blue]); }
 }
 

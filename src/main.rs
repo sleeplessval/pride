@@ -88,11 +88,13 @@ fn help_text() {
 fn list_text() {
 	println!("pride v{}", env!("CARGO_PKG_VERSION"));
 	println!("\nFlag list:");
+	println!("   agender                agender pride flag");
 	println!("   aro, aromantic         aromantic pride flag");
 	println!("   ace, asexual           asexual pride flag");
 	println!("   bigender               bigender pride flag");
 	println!("   bi, bisexual           bisexual pride flag");
 	println!("   gay, pride             six-color rainbow flag");
+	println!("   genderfluid            genderfluid pride flag");
 	println!("   genderqueer            genderqueer pride flag");
 	println!("   gendervoid             gendervoid pride flag");
 	println!("   lesbian                lesbian pride flag");
