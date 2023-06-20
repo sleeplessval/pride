@@ -9,3 +9,9 @@ pub static WHITE: Color = Fg(Rgb(0xFF, 0xFF, 0xFF));
 
 pub static RESET: Fg<Reset> = Fg(Reset);
 
+pub fn rgb(hex: u32) -> Color {
+	let [_, r, g, b] = hex.to_be_bytes();
+	
+	Fg(Rgb(r, g, b))
+}
+
