@@ -6,6 +6,8 @@ mod color;
 mod draw;
 mod flag;
 
+use crate::color::Colors;
+
 fn main() {
 	let mut args = Arguments::from_env();
 
@@ -25,45 +27,56 @@ fn main() {
 
 	let subcommand = args.subcommand().unwrap();
 
-	match subcommand.as_deref() {
-		Some("pride")		|
-		Some("gay")			=>	flag::pride(small),
+	let colors: Colors = match subcommand.as_deref() {
+		Some("pride" | "gay")
+			=>	flag::pride(),
 
-		Some("trans")		|
-		Some("transgender")	=>	flag::transgender(small),
+		Some("transgender" | "trans")
+			=>	flag::transgender(),
 
 
-		Some("agender")		=>	flag::agender(small),
+		Some("agender")
+			=>	flag::agender(),
 
-		Some("aro")			|
-		Some("aromantic")	=>	flag::aromantic(small),
+		Some("aromantic" | "aro")
+			=>	flag::aromantic(),
 
-		Some("ace")			|
-		Some("asexual")		=>	flag::asexual(small),
+		Some("asexual" | "ace")
+			=>	flag::asexual(),
 
-		Some("bigender")	=>	flag::bigender(small),
+		Some("bigender")
+			=>	flag::bigender(),
 
-		Some("bi")			|
-		Some("bisexual")	=>	flag::bisexual(small),
+		Some("bisexual" | "bi")
+			=>	flag::bisexual(),
 
-		Some("genderfluid")	=>	flag::genderfluid(small),
+		Some("genderfluid")
+			=>	flag::genderfluid(),
 
-		Some("genderqueer")	=>	flag::genderqueer(small),
+		Some("genderqueer")
+			=>	flag::genderqueer(),
 
-		Some("gendervoid")	=>	flag::gendervoid(small),
+		Some("gendervoid")
+			=>	flag::gendervoid(),
 
-		Some("lesbian")		=>	flag::lesbian(small),
+		Some("lesbian")
+			=>	flag::lesbian(),
 
-		Some("multigender")	=>	flag::multigender(small),
+		Some("multigender")
+			=>	flag::multigender(),
 
-		Some("nb")			|
-		Some("nonbinary")	=>	flag::nonbinary(small),
+		Some("nonbinary" | "nb")
+			=>	flag::nonbinary(),
 
-		Some("pan")			|
-		Some("pansexual")	=>	flag::pansexual(small),
+		Some("pansexual" | "pan")
+			=>	flag::pansexual(),
 
 		_ => { help_text(); exit(1) }
-	}
+	};
+
+	if small { draw::small(colors); }
+	else { draw::full(colors); }
+
 }
 
 fn help_text() {

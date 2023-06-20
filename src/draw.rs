@@ -4,16 +4,15 @@ use termion::{
 	terminal_size,
 
 	clear,
-	color::{ Fg, Rgb },
 	cursor,
 	input::TermRead,
 	raw::IntoRawMode
 };
 
-use crate::color::RESET;
+use crate::color::{ RESET, Colors };
 use crate::flag::BLOCK;
 
-pub fn draw(colors: &[Fg<Rgb>]) {
+pub fn full(colors: Colors) {
 	let mut stdout = io::stdout().into_raw_mode().unwrap();
 	let stdin = io::stdin();
 
@@ -45,4 +44,18 @@ pub fn draw(colors: &[Fg<Rgb>]) {
 	stdout.flush().ok();
 }
 
+pub fn small(colors: Colors) {
+	let mut stdout = io::stdout();
+
+	let count = colors.len();
+	let width = count * 3;
+
+	let stripe = BLOCK.repeat(width);
+
+	for color in colors {
+		println!("{color}{stripe}");
+	}
+	print!("{RESET}");
+	stdout.flush().ok();
+}
 
