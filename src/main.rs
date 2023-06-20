@@ -8,7 +8,7 @@ mod flag;
 
 use crate::color::Colors;
 
-static VERSION = env!("CARGO_PKG_VERSION");
+static VERSION: &str = env!("CARGO_PKG_VERSION");
 
 fn main() {
 	let mut args = Arguments::from_env();
