@@ -1,6 +1,4 @@
 
-use termion::color;
-
 use crate::color::*;
 
 pub static BLOCK: &str = "█";
