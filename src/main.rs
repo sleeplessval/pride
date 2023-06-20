@@ -8,21 +8,30 @@ mod flag;
 
 use crate::color::Colors;
 
+static VERSION = env!("CARGO_PKG_VERSION");
+
 fn main() {
 	let mut args = Arguments::from_env();
 
-	let help = args.contains(["-h", "--help"]);
-	if help {
+	//	handle help flag
+	if args.contains(["-h", "--help"]) {
 		help_text();
 		return;
 	}
 
-	let list = args.contains(["-l", "--list"]);
-	if list {
+	//	handle list flag
+	if args.contains(["-l", "--list"]) {
 		list_text();
 		return;
 	}
-	
+
+	//	handle version flag
+	if args.contains("--version") {
+		println!("pride v{VERSION}");
+		return;
+	}
+
+	//	get small flag
 	let small = args.contains(["-s", "--small"]);
 
 	let subcommand = args.subcommand().unwrap();
@@ -80,7 +89,7 @@ fn main() {
 }
 
 fn help_text() {
-	println!("pride v{}", env!("CARGO_PKG_VERSION"));
+	println!("pride v{VERSION}");
 	println!("Valerie Wolfe <sleeplessval@gmail.com>");
 	println!("Show pride flags in the terminal.\n");
 
@@ -91,6 +100,7 @@ fn help_text() {
 
 	println!("flags:");
 	println!("   -h, --help     Shows this help text");
+	println!("   --version      Show version information");
 	println!("   -l, --list     Prints a list of printable flags");
 	println!("   -s, --small    Prints a small version without holding");
 
