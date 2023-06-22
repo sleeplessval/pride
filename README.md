@@ -9,9 +9,6 @@ to make major changes and refactors until the main roadmap is complete.**
 
 Currently supports a variety of stripe flags.
 
-## Variant Flag Branch
-
-This branch adds flag variants. Currently, it adds two for the rainbow pride flag:
-- Gilbert Baker/Sex and Magic: original 1978 eight-color rainbow flag
-- Philadelphia: 2017 rainbow flag with black and brown stripes
+Under Construction features:
+- ["Complex" Flags](https://git.vwolfe.io/valerie/pride/src/branch/complex)
 
