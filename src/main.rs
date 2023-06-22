@@ -5,6 +5,7 @@ use pico_args::Arguments;
 mod color;
 mod draw;
 mod flag;
+mod variant;
 
 use crate::color::Colors;
 
@@ -38,7 +39,17 @@ fn main() {
 
 	let colors: Colors = match subcommand.as_deref() {
 		Some("pride" | "gay")
-			=>	flag::pride(),
+			=>	{
+				let variant = args.subcommand().unwrap_or(None);
+				match variant.as_deref() {
+					Some("8-color" | "gilbert-baker" | "sex-and-magic")
+						=>	variant::gilbert_baker(),
+					Some("philadelphia")
+						=>	variant::philadelphia(),
+					_
+						=>	flag::pride()
+				}
+			},
 
 		Some("transgender" | "trans")
 			=>	flag::transgender(),
@@ -79,14 +90,6 @@ fn main() {
 
 		Some("pansexual" | "pan")
 			=>	flag::pansexual(),
-
-
-		Some("sex-and-magic")|
-		Some("baker")		 |
-		Some("gilbert")		=>	flag::gilbert(small),
-
-		Some("philly")		|
-		Some("philadelphia")=>	flag::philadelphia(small),
 
 		_ => { help_text(); exit(1) }
 	};
