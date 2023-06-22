@@ -2,58 +2,83 @@ use std::process::exit;
 
 use pico_args::Arguments;
 
+mod color;
 mod draw;
 mod flag;
+
+use crate::color::Colors;
+
+static VERSION: &str = env!("CARGO_PKG_VERSION");
 
 fn main() {
 	let mut args = Arguments::from_env();
 
-	let help = args.contains(["-h", "--help"]);
-	if help {
+	//	handle help flag
+	if args.contains(["-h", "--help"]) {
 		help_text();
 		return;
 	}
 
-	let list = args.contains(["-l", "--list"]);
-	if list {
+	//	handle list flag
+	if args.contains(["-l", "--list"]) {
 		list_text();
 		return;
 	}
-	
+
+	//	handle version flag
+	if args.contains("--version") {
+		println!("pride v{VERSION}");
+		return;
+	}
+
+	//	get small flag
 	let small = args.contains(["-s", "--small"]);
 
 	let subcommand = args.subcommand().unwrap();
 
-	match subcommand.as_deref() {
-		Some("pride")		|
-		Some("gay")			=>	flag::pride(small),
+	let colors: Colors = match subcommand.as_deref() {
+		Some("pride" | "gay")
+			=>	flag::pride(),
 
-		Some("trans")		|
-		Some("transgender")	=>	flag::transgender(small),
+		Some("transgender" | "trans")
+			=>	flag::transgender(),
 
 
-		Some("aro")			|
-		Some("aromantic")	=>	flag::aromantic(small),
+		Some("agender")
+			=>	flag::agender(),
 
-		Some("ace")			|
-		Some("asexual")		=>	flag::asexual(small),
+		Some("aromantic" | "aro")
+			=>	flag::aromantic(),
 
-		Some("bigender")	=>	flag::bigender(small),
+		Some("asexual" | "ace")
+			=>	flag::asexual(),
 
-		Some("bi")			|
-		Some("bisexual")	=>	flag::bisexual(small),
+		Some("bigender")
+			=>	flag::bigender(),
 
-		Some("gendervoid")	=>	flag::gendervoid(small),
+		Some("bisexual" | "bi")
+			=>	flag::bisexual(),
 
-		Some("lesbian")		=>	flag::lesbian(small),
+		Some("genderfluid")
+			=>	flag::genderfluid(),
 
-		Some("multigender")	=>	flag::multigender(small),
+		Some("genderqueer")
+			=>	flag::genderqueer(),
 
-		Some("nb")			|
-		Some("nonbinary")	=>	flag::nonbinary(small),
+		Some("gendervoid")
+			=>	flag::gendervoid(),
 
-		Some("pan")			|
-		Some("pansexual")	=>	flag::pansexual(small),
+		Some("lesbian")
+			=>	flag::lesbian(),
+
+		Some("multigender")
+			=>	flag::multigender(),
+
+		Some("nonbinary" | "nb")
+			=>	flag::nonbinary(),
+
+		Some("pansexual" | "pan")
+			=>	flag::pansexual(),
 
 
 		Some("sex-and-magic")|
@@ -64,11 +89,15 @@ fn main() {
 		Some("philadelphia")=>	flag::philadelphia(small),
 
 		_ => { help_text(); exit(1) }
-	}
+	};
+
+	if small { draw::small(colors); }
+	else { draw::full(colors); }
+
 }
 
 fn help_text() {
-	println!("pride v{}", env!("CARGO_PKG_VERSION"));
+	println!("pride v{VERSION}");
 	println!("Valerie Wolfe <sleeplessval@gmail.com>");
 	println!("Show pride flags in the terminal.\n");
 
@@ -79,6 +108,7 @@ fn help_text() {
 
 	println!("flags:");
 	println!("   -h, --help     Shows this help text");
+	println!("   --version      Show version information");
 	println!("   -l, --list     Prints a list of printable flags");
 	println!("   -s, --small    Prints a small version without holding");
 
@@ -89,11 +119,14 @@ fn help_text() {
 fn list_text() {
 	println!("pride v{}", env!("CARGO_PKG_VERSION"));
 	println!("\nFlag list:");
+	println!("   agender                agender pride flag");
 	println!("   aro, aromantic         aromantic pride flag");
 	println!("   ace, asexual           asexual pride flag");
 	println!("   bigender               bigender pride flag");
 	println!("   bi, bisexual           bisexual pride flag");
 	println!("   gay, pride             six-color rainbow flag");
+	println!("   genderfluid            genderfluid pride flag");
+	println!("   genderqueer            genderqueer pride flag");
 	println!("   gendervoid             gendervoid pride flag");
 	println!("   lesbian                lesbian pride flag");
 	println!("   multigender            multigender pride flag");
