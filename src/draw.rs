@@ -10,7 +10,9 @@ use termion::{
 };
 
 use crate::color::{ RESET, Colors };
-use crate::flag::BLOCK;
+
+pub static BLOCK: &str = "█";
+pub static UHALF: &str = "▀";
 
 pub fn full(colors: Colors) {
 	let mut stdout = io::stdout().into_raw_mode().unwrap();

@@ -1,8 +1,6 @@
 
 use crate::color::*;
 
-pub static BLOCK: &str = "█";
-
 pub fn pride() -> Colors {
 	let red		= rgb(0xE50000);
 	let orange	= rgb(0xFF8D00);

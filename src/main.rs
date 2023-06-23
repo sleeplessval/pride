@@ -3,6 +3,7 @@ use std::process::exit;
 use pico_args::Arguments;
 
 mod color;
+mod complex;
 mod draw;
 mod flag;
 mod variant;
@@ -46,6 +47,8 @@ fn main() {
 						=>	variant::gilbert_baker(),
 					Some("philadelphia")
 						=>	variant::philadelphia(),
+//					Some("progress")
+//						=>	complex::progress(),
 					_
 						=>	flag::pride()
 				}
@@ -64,11 +67,20 @@ fn main() {
 		Some("asexual" | "ace")
 			=>	flag::asexual(),
 
+//		Some("aroace" | "aromantic-asexual")
+//			=>	complex::aroace(),
+
 		Some("bigender")
 			=>	flag::bigender(),
 
 		Some("bisexual" | "bi")
 			=>	flag::bisexual(),
+
+//		Some("demiromantic")
+//			=>	flag::demiromantic(),
+
+//		Some("demisexual")
+//			=>	flag::demisexual(),
 
 		Some("genderfluid")
 			=>	flag::genderfluid(),
@@ -78,6 +90,9 @@ fn main() {
 
 		Some("gendervoid")
 			=>	flag::gendervoid(),
+
+		Some("intersex")
+			=>	complex::intersex(),
 
 		Some("lesbian")
 			=>	flag::lesbian(),
@@ -90,6 +105,9 @@ fn main() {
 
 		Some("pansexual" | "pan")
 			=>	flag::pansexual(),
+
+//		Some("poly" | "polyamorous" | "polyamory")
+//			=>	complex::polyamorous(),
 
 		_ => { help_text(); exit(1) }
 	};
@@ -125,17 +143,21 @@ fn list_text() {
 	println!("   agender                agender pride flag");
 	println!("   aro, aromantic         aromantic pride flag");
 	println!("   ace, asexual           asexual pride flag");
+//	println!("   aroace                 aromantic/asexual pride flag");
 	println!("   bigender               bigender pride flag");
 	println!("   bi, bisexual           bisexual pride flag");
+//	println!("   demiromantic           demiromantic pride flag");
+//	println!("   demisexual             demisexual pride flag");
 	println!("   gay, pride             six-color rainbow flag");
 	println!("   genderfluid            genderfluid pride flag");
 	println!("   genderqueer            genderqueer pride flag");
 	println!("   gendervoid             gendervoid pride flag");
+//	println!("   intersex               intersex pride flag");
 	println!("   lesbian                lesbian pride flag");
 	println!("   multigender            multigender pride flag");
 	println!("   nb, nonbinary          nonbinary pride flag");
 	println!("   pan, pansexual         pansexual pride flag");
-//	println!("   progress               progress arrow flag");
+//	println!("   poly, polyamorous      polyamorous pride flag");
 	println!("   trans, transgender     transgender pride flag");
 }
 
