@@ -62,6 +62,17 @@ pub fn bisexual() -> Colors {
 	vec![magenta, magenta, purple, blue, blue]
 }
 
+pub fn gay() -> Colors {
+	let green1	= rgb(0x00906D);
+	let green2	= rgb(0x00D1A7);
+	let green3	= rgb(0x7EEBC1);
+	let blue1	= rgb(0x6CAEE8);
+	let blue2	= rgb(0x5543D3);
+	let blue3	= rgb(0x461280);
+
+	vec![green1, green2, green3, WHITE, blue1, blue2, blue3]
+}
+
 pub fn genderfluid() -> Colors {
 	let pink	= rgb(0xFF75A2);
 	let violet	= rgb(0xBE18D6);

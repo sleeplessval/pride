@@ -38,7 +38,8 @@ fn main() {
 	let subcommand = args.subcommand().unwrap();
 
 	let colors: Colors = match subcommand.as_deref() {
-		Some("pride" | "gay")
+		Some("pride")
+		| None
 			=>	{
 				let variant = args.subcommand().unwrap_or(None);
 				match variant.as_deref() {
@@ -69,6 +70,9 @@ fn main() {
 
 		Some("bisexual" | "bi")
 			=>	flag::bisexual(),
+
+		Some("gay" | "mlm")
+			=>	flag::gay(),
 
 		Some("genderfluid")
 			=>	flag::genderfluid(),
@@ -104,7 +108,7 @@ fn help_text() {
 	println!("Valerie Wolfe <sleeplessval@gmail.com>");
 	println!("Show pride flags in the terminal.\n");
 
-	println!("usage: pride [flags] <name>\n");
+	println!("usage: pride [flags] [name]\n");
 
 	println!("args:");
 	println!("   <name>         The pride flag to display\n");
@@ -127,7 +131,7 @@ fn list_text() {
 	println!("   ace, asexual           asexual pride flag");
 	println!("   bigender               bigender pride flag");
 	println!("   bi, bisexual           bisexual pride flag");
-	println!("   gay, pride             six-color rainbow flag");
+	println!("   gay, mlm               gay men pride flag");
 	println!("   genderfluid            genderfluid pride flag");
 	println!("   genderqueer            genderqueer pride flag");
 	println!("   gendervoid             gendervoid pride flag");
@@ -135,6 +139,7 @@ fn list_text() {
 	println!("   multigender            multigender pride flag");
 	println!("   nb, nonbinary          nonbinary pride flag");
 	println!("   pan, pansexual         pansexual pride flag");
+	println!("   pride                  six-color rainbow flag");
 //	println!("   progress               progress arrow flag");
 	println!("   trans, transgender     transgender pride flag");
 }
