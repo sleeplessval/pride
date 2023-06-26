@@ -1,3 +1,5 @@
+//!	stripe pride flag color functions.
+//!	all of these return a Vec of colors to be drawn from first to last.
 
 use crate::color::*;
 

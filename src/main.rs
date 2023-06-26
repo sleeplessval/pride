@@ -12,6 +12,7 @@ use crate::color::Colors;
 static VERSION: &str = env!("CARGO_PKG_VERSION");
 
 fn main() {
+	//	collect args
 	let mut args = Arguments::from_env();
 
 	//	handle help flag
@@ -37,6 +38,7 @@ fn main() {
 
 	let subcommand = args.subcommand().unwrap();
 
+	//	get color vec from matched flag
 	let colors: Colors = match subcommand.as_deref() {
 		Some("pride" | "rainbow")
 		| None
@@ -95,7 +97,7 @@ fn main() {
 		Some("pansexual" | "pan")
 			=>	flag::pansexual(),
 
-		_ => { help_text(); exit(1) }
+		_ => { help_text(); exit(1) }	//	(or die)
 	};
 
 	if small { draw::small(colors); }

@@ -1,3 +1,5 @@
+//!	variant pride flags
+//!	these aren't in the flag module for organizational reasons.
 
 use crate::{
 	color::*,
