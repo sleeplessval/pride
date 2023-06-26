@@ -38,7 +38,7 @@ fn main() {
 	let subcommand = args.subcommand().unwrap();
 
 	let colors: Colors = match subcommand.as_deref() {
-		Some("pride")
+		Some("pride" | "rainbow")
 		| None
 			=>	{
 				let variant = args.subcommand().unwrap_or(None);
@@ -139,7 +139,7 @@ fn list_text() {
 	println!("   multigender            multigender pride flag");
 	println!("   nb, nonbinary          nonbinary pride flag");
 	println!("   pan, pansexual         pansexual pride flag");
-	println!("   pride                  six-color rainbow flag");
+	println!("   pride, rainbow         six-color rainbow flag");
 //	println!("   progress               progress arrow flag");
 	println!("   trans, transgender     transgender pride flag");
 }
