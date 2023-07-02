@@ -79,6 +79,9 @@ fn main() {
 		Some("genderfluid")
 			=>	flag::genderfluid(),
 
+		Some("gender-nonconforming" | "gnc" | "gendernonconforming")
+			=>	flag::gender_nonconforming(),
+
 		Some("genderqueer")
 			=>	flag::genderqueer(),
 
@@ -135,6 +138,7 @@ fn list_text() {
 	println!("   bi, bisexual           bisexual pride flag");
 	println!("   gay, mlm               gay men pride flag");
 	println!("   genderfluid            genderfluid pride flag");
+	println!("   gender-nonconforming   gender nonconforming pride flag");
 	println!("   genderqueer            genderqueer pride flag");
 	println!("   gendervoid             gendervoid pride flag");
 	println!("   lesbian                lesbian pride flag");

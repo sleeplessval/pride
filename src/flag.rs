@@ -83,6 +83,14 @@ pub fn genderfluid() -> Colors {
 	vec![pink, WHITE, violet, BLACK, blue]
 }
 
+pub fn gender_nonconforming() -> Colors {
+	let purple	= rgb(0x50284D);
+	let magenta	= rgb(0x96467B);
+	let blue	= rgb(0x5C96F7);
+
+	vec![purple, purple, magenta, blue, WHITE, blue, magenta, purple, purple]
+}
+
 pub fn genderqueer() -> Colors {
 	let purple	= rgb(0xB899DF);
 	let green	= rgb(0x6B8E3B);
