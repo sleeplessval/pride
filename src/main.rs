@@ -5,6 +5,7 @@ use pico_args::Arguments;
 mod color;
 mod draw;
 mod flag;
+mod help;
 mod variant;
 
 use crate::color::Colors;
@@ -17,13 +18,15 @@ fn main() {
 
 	//	handle help flag
 	if args.contains(["-h", "--help"]) {
-		help_text();
+		let target = args.subcommand().unwrap();
+		if target.is_some() { help::flag_help(&target.unwrap()); }
+		else { help::help_text(); }
 		return;
 	}
 
 	//	handle list flag
 	if args.contains(["-l", "--list"]) {
-		list_text();
+		help::list_text();
 		return;
 	}
 
@@ -100,53 +103,11 @@ fn main() {
 		Some("pansexual" | "pan")
 			=>	flag::pansexual(),
 
-		_ => { help_text(); exit(1) }	//	(or die)
+		_ => { help::help_text(); exit(1) }	//	(or die)
 	};
 
 	if small { draw::small(colors); }
 	else { draw::full(colors); }
 
-}
-
-fn help_text() {
-	println!("pride v{VERSION}");
-	println!("Valerie Wolfe <sleeplessval@gmail.com>");
-	println!("Show pride flags in the terminal.\n");
-
-	println!("usage: pride [flags] [name]\n");
-
-	println!("args:");
-	println!("   <name>         The pride flag to display\n");
-
-	println!("flags:");
-	println!("   -h, --help     Shows this help text");
-	println!("   --version      Show version information");
-	println!("   -l, --list     Prints a list of printable flags");
-	println!("   -s, --small    Prints a small version without holding");
-
-	println!("\nUse 'pride --list' to see a list of printable flags");
-	println!("\n~ You're loved and you matter ♥");
-}
-
-fn list_text() {
-	println!("pride v{}", env!("CARGO_PKG_VERSION"));
-	println!("\nFlag list:");
-	println!("   agender                agender pride flag");
-	println!("   aro, aromantic         aromantic pride flag");
-	println!("   ace, asexual           asexual pride flag");
-	println!("   bigender               bigender pride flag");
-	println!("   bi, bisexual           bisexual pride flag");
-	println!("   gay, mlm               gay men pride flag");
-	println!("   genderfluid            genderfluid pride flag");
-	println!("   gender-nonconforming   gender nonconforming pride flag");
-	println!("   genderqueer            genderqueer pride flag");
-	println!("   gendervoid             gendervoid pride flag");
-	println!("   lesbian                lesbian pride flag");
-	println!("   multigender            multigender pride flag");
-	println!("   nb, nonbinary          nonbinary pride flag");
-	println!("   pan, pansexual         pansexual pride flag");
-	println!("   pride, rainbow         six-color rainbow flag");
-//	println!("   progress               progress arrow flag");
-	println!("   trans, transgender     transgender pride flag");
 }
 
