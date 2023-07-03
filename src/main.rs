@@ -47,8 +47,8 @@ fn main() {
 						=>	variant::gilbert_baker(),
 					Some("philadelphia")
 						=>	variant::philadelphia(),
-//					Some("progress")
-//						=>	complex::progress(),
+					Some("progress")
+						=>	complex::progress(small),
 					_
 						=>	flag::pride()
 				}
@@ -76,11 +76,11 @@ fn main() {
 		Some("bisexual" | "bi")
 			=>	flag::bisexual(),
 
-//		Some("demiromantic")
-//			=>	complex::demiromantic(),
+		Some("demiromantic")
+			=>	complex::demiromantic(small),
 
-//		Some("demisexual")
-//			=>	complex::demisexual(),
+		Some("demisexual")
+			=>	complex::demisexual(small),
 
 //		Some("disability")
 //			=>	complex::disability();
@@ -149,8 +149,8 @@ fn list_text() {
 //	println!("   aroace                 aromantic/asexual pride flag");
 	println!("   bigender               bigender pride flag");
 	println!("   bi, bisexual           bisexual pride flag");
-//	println!("   demiromantic           demiromantic pride flag");
-//	println!("   demisexual             demisexual pride flag");
+	println!("   demiromantic           demiromantic pride flag");
+	println!("   demisexual             demisexual pride flag");
 //	println!("   disability             disability pride flag");
 	println!("   gay, pride             six-color rainbow flag");
 	println!("   genderfluid            genderfluid pride flag");
