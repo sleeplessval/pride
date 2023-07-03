@@ -10,7 +10,7 @@ to make major changes and refactors until the main roadmap is complete.**
 Currently supports a variety of stripe flags.
 
 Under Construction features:
-- ["Complex" Flags](https://git.vwolfe.io/valerie/pride/src/branch/complex)
+- [Complex Drawing](https://git.vwolfe.io/valerie/pride/src/branch/complex)
 
 ## Libraries
 
