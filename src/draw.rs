@@ -9,7 +9,7 @@ use termion::{
 	raw::IntoRawMode
 };
 
-use crate::color::{ RESET, Colors };
+use crate::color::{ RESET, RESET_BG, Colors };
 
 pub static BLOCK: &str = "█";
 pub static UHALF: &str = "▀";
@@ -58,6 +58,32 @@ pub fn small(colors: Colors) {
 		println!("{color}{stripe}");
 	}
 	print!("{RESET}");
+	stdout.flush().ok();
+}
+
+pub fn lines(lines: Vec<String>, hold: bool) {
+	let mut stdout = io::stdout().into_raw_mode().unwrap();
+
+	let count = lines.len() as u16;
+	for _ in 0..count { write!(stdout, "\n").ok(); }
+	write!(stdout, "{}", cursor::Up(count)).ok();
+
+	if hold { write!(stdout, "{}{}", cursor::Hide, clear::All).ok(); }
+
+	let down = cursor::Down(1);
+	for line in lines {
+		let left = cursor::Left(line.len() as u16);
+		write!(stdout, "{line}{left}{down}").ok();
+	}
+
+	write!(stdout, "{RESET}{RESET_BG}").ok();
+	stdout.flush().ok();
+	if hold {
+		let stdin = io::stdin();
+		for _ in stdin.keys() { break; }
+		write!(stdout, "{}", clear::All).ok();
+	}
+	write!(stdout, "{}", cursor::Show).ok();
 	stdout.flush().ok();
 }
 

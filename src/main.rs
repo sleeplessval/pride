@@ -77,10 +77,13 @@ fn main() {
 			=>	flag::bisexual(),
 
 //		Some("demiromantic")
-//			=>	flag::demiromantic(),
+//			=>	complex::demiromantic(),
 
 //		Some("demisexual")
-//			=>	flag::demisexual(),
+//			=>	complex::demisexual(),
+
+//		Some("disability")
+//			=>	complex::disability();
 
 		Some("genderfluid")
 			=>	flag::genderfluid(),
@@ -148,6 +151,7 @@ fn list_text() {
 	println!("   bi, bisexual           bisexual pride flag");
 //	println!("   demiromantic           demiromantic pride flag");
 //	println!("   demisexual             demisexual pride flag");
+//	println!("   disability             disability pride flag");
 	println!("   gay, pride             six-color rainbow flag");
 	println!("   genderfluid            genderfluid pride flag");
 	println!("   genderqueer            genderqueer pride flag");
