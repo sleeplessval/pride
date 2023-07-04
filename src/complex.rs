@@ -35,13 +35,26 @@ pub fn progress(small: bool) -> Colors {
 	//	we need these colors in both fg & bg; just hold the integers for now
 	let black:	u32 = 0;
 	let brown:	u32 = 0x784F17;
+	let ltblue:	u32 = 0xEAACB8;
 	let pink:	u32 = 0xEAACB8;
 	let white:	u32 = 0xFFFFFF;
 
-	let (width, height) = if small { (6, 18) } else { terminal_size().unwrap() };
+	let (height, width) = if small { (6, 18) } else { terminal_size().unwrap() };
 
-	let stripes = vec![red, orange, yellow, green, blue, purple];
-	let mut lines = draw::bg_stripes(stripes, width, height);
+	let stripes = [red, orange, yellow, green, blue, purple];
+	let chevrons = [white, pink, ltblue, brown, black];
+	let mut lines: Vec<String> = Vec::new();
+	//let mut lines = draw::bg_stripes(stripes, width, height);
+
+	/*	i think i'm stuck having to write stripes here too. it'll
+	 *	be easier to just generate the stripes on alongside the
+	 *	chevrons than to figure out where to move the ansi bg code
+	 */
+
+	let stripe_index = 0;
+	let chevron_index = 5;	//	chevrons are funky :)
+
+	
 
 	draw::lines(lines, !small);
 	exit(0);
