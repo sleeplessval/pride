@@ -29,3 +29,15 @@ pub fn philadelphia() -> Colors {
 	output
 }
 
+pub fn lesbian_7() -> Colors {
+	let orange1	= rgb(0xD52D00);	//	gender non-conformity
+	let orange2	= rgb(0xEF7627);	//	independence
+	let orange3	= rgb(0xFF9A56);	//	community
+	//	white						//	unique relationships with womanhood
+	let pink1	= rgb(0xD162A4);	//	serenity and peace
+	let pink2	= rgb(0xB55690);	//	love and sex
+	let pink3	= rgb(0xA30262);	//	femininity
+
+	vec![orange1, orange2, orange3, WHITE, pink1, pink2, pink3]
+}
+

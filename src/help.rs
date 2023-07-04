@@ -66,8 +66,18 @@ variants:
 				println!("The transgender pride flag designed by Monica Helms in 1999.
 
 names:
-   'transgender', 'trans'
-");
+   'transgender', 'trans'");
+			},
+
+		"lesbian"
+			=> {
+				println!("Emily Gwen's 2018 5-stripe lesbian flag.
+
+names:
+   'lesbian'
+
+variants:
+   7-color            7-stripe flag, also designed in 2018 by Emily Gwen");
 			}
 
 		_

@@ -92,7 +92,15 @@ fn main() {
 			=>	flag::gendervoid(),
 
 		Some("lesbian")
-			=>	flag::lesbian(),
+			=>	{
+				let variant = args.subcommand().unwrap_or(None);
+				match variant.as_deref() {
+					Some("7-color")
+						=>	variant::lesbian_7(),
+					_
+						=>	flag::lesbian()
+				}
+			}
 
 		Some("multigender")
 			=>	flag::multigender(),
