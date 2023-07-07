@@ -1,10 +1,11 @@
 
 use crate::{
 	color::*,
+	draw::Flag,
 	flag
 };
 
-pub fn gilbert_baker() -> Colors {
+pub fn gilbert_baker() -> Flag {
 	let pink	= rgb(0xFF69B4);	//	sex
 	let red		= rgb(0xFF0000);	//	life
 	let orange	= rgb(0xFF8F00);	//	healing
@@ -14,16 +15,22 @@ pub fn gilbert_baker() -> Colors {
 	let indigo	= rgb(0x3E0099);	//	serenity
 	let purple	= rgb(0x8F008F);	//	spirit
 
-	vec![pink, red, orange, yellow, green, cyan, indigo, purple]
+	Flag::Stripes(vec![pink, red, orange, yellow, green, cyan, indigo, purple])
 }
 
-pub fn philadelphia() -> Colors {
+pub fn philadelphia() -> Flag {
 	let brown = rgb(0x784F17);
 
-	let mut output = flag::pride();
-	output.insert(0, BLACK);
-	output.insert(1, brown);
+	let base = flag::pride();
+	let mut colors = match base {
+		Flag::Stripes(inner)
+			=>	inner,
+		_
+			=>	{ panic!("impossible enum variant"); }
+	};
+	colors.insert(0, BLACK);
+	colors.insert(1, brown);
 
-	output
+	Flag::Stripes(colors)
 }
 

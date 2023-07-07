@@ -8,7 +8,7 @@ mod draw;
 mod flag;
 mod variant;
 
-use crate::color::Colors;
+use crate::draw::Flag;
 
 static VERSION: &str = env!("CARGO_PKG_VERSION");
 
@@ -38,7 +38,7 @@ fn main() {
 
 	let subcommand = args.subcommand().unwrap();
 
-	let colors: Colors = match subcommand.as_deref() {
+	let flag: Flag = match subcommand.as_deref() {
 		Some("pride" | "gay")
 			=>	{
 				let variant = args.subcommand().unwrap_or(None);
@@ -115,8 +115,7 @@ fn main() {
 		_ => { help_text(); exit(1) }
 	};
 
-	if small { draw::small(colors); }
-	else { draw::full(colors); }
+	flag.draw(!small);
 
 }
 

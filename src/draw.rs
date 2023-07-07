@@ -62,7 +62,7 @@ pub fn small(colors: Colors) {
 	stdout.flush().ok();
 }
 
-pub fn lines(lines: Vec<String>, hold: bool) {
+pub fn draw_lines(lines: Vec<String>, hold: bool) {
 	let mut stdout = io::stdout().into_raw_mode().unwrap();
 
 	let count = lines.len() as u16;
@@ -131,5 +131,29 @@ pub fn bg_stripes(colors: Vec<Bg<Rgb>>, width: u16, height: u16) -> Vec<String> 
 	}
 
 	output
+}
+
+pub enum Flag {
+	Stripes(Colors),
+	Lines(Vec<String>)
+}
+impl Flag {
+	pub fn draw(self, hold: bool) {
+		let lines = match self {
+			Flag::Stripes(colors)
+				=> {
+					let (width, height);
+					if hold { (width, height) = terminal_size().unwrap(); }
+					else {
+						height = colors.len() as u16;
+						width = height * 3;
+					}
+					fg_stripes(colors, width, height)
+				},
+			Flag::Lines(lines)
+				=>	lines
+		};
+		draw_lines(lines, hold);
+	}
 }
 
