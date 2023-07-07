@@ -6,9 +6,11 @@ use termion::{
 	color::{ Bg, Rgb }
 };
 
-use crate::color::*;
-use crate::draw::{ self, Flag };
-use crate::flag;
+use crate::{
+	color::*,
+	draw,
+	flag::{ self, Flag }
+};
 
 ///	vertically stacking eighths
 pub static V_EIGHTH: [char; 7] = ['▁', '▂', '▃', '▄', '▅', '▆', '▇'];
@@ -39,7 +41,7 @@ pub fn progress(small: bool) -> Flag {
 	let pink:	u32 = 0xEAACB8;
 	let white:	u32 = 0xFFFFFF;
 
-	let (height, width) = if small { (6, 18) } else { terminal_size().unwrap() };
+	let (width, height) = if small { (18, 6) } else { terminal_size().unwrap() };
 
 	//	create color slices and line buffer
 	let stripes = [red, orange, yellow, green, blue, purple];
@@ -77,6 +79,7 @@ pub fn progress(small: bool) -> Flag {
 
 		//	get this line's depth?
 		//	get chevron start: (full_depth - line_depth) / chevron_width = chevron_start
+		let start: i16 = 2 - (n as i16);
 
 		//	for chevron_index in chevron_start..5
 		//		if chevron_index = 4, draw stripe after (stripe width = width - line_depth - 1)
@@ -107,10 +110,34 @@ pub fn progress(small: bool) -> Flag {
 
 //	everything below this point is in alphabetical order
 
-pub fn aroace() {
-	let aro = flag::aromantic();
-	let ace = flag::asexual();
+pub fn aroace(small: bool) -> Flag {
+	//	pull colors from aro & ace stripe flags
+	let Flag::Stripes(aro) = flag::aromantic() else { panic!() };
+	let Flag::Stripes(ace) = flag::asexual() else { panic!() };
 
+	let (width, height) = if small { (60, 20) } else { terminal_size().unwrap() };
+
+	let mut lines: Vec<String> = Vec::new();
+
+	//	set up constraints
+	let linecount = height - (height % 20);
+	let aro_thresh = linecount / 5;	//	threshold for aromantic colors
+	let ace_thresh = linecount / 4;	//	threshold for asexual colors
+	let stripe = draw::BLOCK.repeat((width / 2) as usize);
+
+	let mut aro_index = 0;
+	let mut ace_index = 0;
+	for n in 0..linecount {
+		//	switch colors on thresholds
+		if n != 0 {
+			if n % aro_thresh == 0 { aro_index += 1; }
+			if n % ace_thresh == 0 { ace_index += 1; }
+		}
+		let line = format!("{}{stripe}{}{stripe}", aro[aro_index], ace[ace_index]);
+		lines.push(line);
+	}
+
+	Flag::Lines(lines)
 }
 
 fn demi_orientation_render(middle: Bg<Rgb>, bottom: Bg<Rgb>, width: u16, height: u16) -> Vec<String> {

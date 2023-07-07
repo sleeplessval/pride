@@ -1,8 +1,7 @@
 
 use crate::{
 	color::*,
-	draw::Flag,
-	flag
+	flag::{ self, Flag }
 };
 
 pub fn gilbert_baker() -> Flag {

@@ -1,6 +1,11 @@
 
 use crate::color::*;
-use crate::draw::Flag;
+
+pub enum Flag {
+	Stripes(Colors),
+	Lines(Vec<String>)
+}
+
 
 pub fn pride() -> Flag {
 	let red		= rgb(0xE50000);

@@ -10,57 +10,13 @@ use termion::{
 	raw::IntoRawMode
 };
 
-use crate::color::{ RESET, RESET_BG, Colors };
+use crate::{
+	color::{ RESET, RESET_BG },
+	flag::Flag
+};
 
 pub static BLOCK: &str = "█";
 pub static UHALF: &str = "▀";
-
-pub fn full(colors: Colors) {
-	let mut stdout = io::stdout().into_raw_mode().unwrap();
-	let stdin = io::stdin();
-
-	let count = colors.len();
-	let (width, height) = terminal_size().unwrap();
-	let thresh = height as usize / count;
-
-	write!(stdout, "{}{}", cursor::Hide, clear::All).ok();
-	stdout.flush().ok();
-
-	let stripe = BLOCK.repeat(width as usize);
-
-	let mut index = 0;
-	for n in 0..(height as usize) {
-		if n != 0 && n % thresh == 0 {
-			index += 1;
-			if index >= count { break; }
-		}
-		write!(
-			stdout,
-			"{color}{stripe}{RESET}",
-			color = colors[index]
-		).ok();
-	}
-	stdout.flush().ok();
-
-	for _ in stdin.keys() { break; }
-	write!(stdout, "{}{}", cursor::Show, clear::All).ok();
-	stdout.flush().ok();
-}
-
-pub fn small(colors: Colors) {
-	let mut stdout = io::stdout();
-
-	let count = colors.len();
-	let width = count * 3;
-
-	let stripe = BLOCK.repeat(width);
-
-	for color in colors {
-		println!("{color}{stripe}");
-	}
-	print!("{RESET}");
-	stdout.flush().ok();
-}
 
 pub fn draw_lines(lines: Vec<String>, hold: bool) {
 	let mut stdout = io::stdout().into_raw_mode().unwrap();
@@ -133,10 +89,6 @@ pub fn bg_stripes(colors: Vec<Bg<Rgb>>, width: u16, height: u16) -> Vec<String> 
 	output
 }
 
-pub enum Flag {
-	Stripes(Colors),
-	Lines(Vec<String>)
-}
 impl Flag {
 	pub fn draw(self, hold: bool) {
 		let lines = match self {

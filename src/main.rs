@@ -8,7 +8,7 @@ mod draw;
 mod flag;
 mod variant;
 
-use crate::draw::Flag;
+use crate::flag::Flag;
 
 static VERSION: &str = env!("CARGO_PKG_VERSION");
 
@@ -67,8 +67,8 @@ fn main() {
 		Some("asexual" | "ace")
 			=>	flag::asexual(),
 
-//		Some("aroace" | "aromantic-asexual")
-//			=>	complex::aroace(),
+		Some("aroace" | "aromantic-asexual")
+			=>	complex::aroace(small),
 
 		Some("bigender")
 			=>	flag::bigender(),
@@ -145,7 +145,7 @@ fn list_text() {
 	println!("   agender                agender pride flag");
 	println!("   aro, aromantic         aromantic pride flag");
 	println!("   ace, asexual           asexual pride flag");
-//	println!("   aroace                 aromantic/asexual pride flag");
+	println!("   aroace                 aromantic/asexual pride flag");
 	println!("   bigender               bigender pride flag");
 	println!("   bi, bisexual           bisexual pride flag");
 	println!("   demiromantic           demiromantic pride flag");
