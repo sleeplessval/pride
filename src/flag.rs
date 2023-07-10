@@ -1,3 +1,5 @@
+//!	stripe pride flag color functions.
+//!	all of these return a Vec of colors to be drawn from first to last.
 
 use crate::color::*;
 
@@ -66,12 +68,31 @@ pub fn bisexual() -> Flag {
 	Flag::Stripes(vec![magenta, magenta, purple, blue, blue])
 }
 
+pub fn gay() -> Flag {
+	let green1	= rgb(0x00906D);
+	let green2	= rgb(0x00D1A7);
+	let green3	= rgb(0x7EEBC1);
+	let blue1	= rgb(0x6CAEE8);
+	let blue2	= rgb(0x5543D3);
+	let blue3	= rgb(0x461280);
+
+	Flag::Stripes(vec![green1, green2, green3, WHITE, blue1, blue2, blue3])
+}
+
 pub fn genderfluid() -> Flag {
 	let pink	= rgb(0xFF75A2);
 	let violet	= rgb(0xBE18D6);
 	let blue	= rgb(0x333EBD);
 
 	Flag::Stripes(vec![pink, WHITE, violet, BLACK, blue])
+}
+
+pub fn gender_nonconforming() -> Flag {
+	let purple	= rgb(0x50284D);
+	let magenta	= rgb(0x96467B);
+	let blue	= rgb(0x5C96F7);
+
+	Flag::Stripes(vec![purple, purple, magenta, blue, WHITE, blue, magenta, purple, purple])
 }
 
 pub fn genderqueer() -> Flag {

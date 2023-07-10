@@ -12,6 +12,7 @@ pub static RESET_BG: Bg<Reset> = Bg(Reset);
 
 ///	produces a termion foreground color from the provided integer
 pub fn rgb(hex: u32) -> Color {
+	//	colors should be 0xrrggbb = 0x__rrggbb; drop the most significant byte
 	let [_, r, g, b] = hex.to_be_bytes();
 	
 	Fg(Rgb(r, g, b))

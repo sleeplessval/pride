@@ -54,10 +54,12 @@ pub fn fg_stripes(colors: Vec<Fg<Rgb>>, width: u16, height: u16) -> Vec<String> 
 	let stripe = BLOCK.repeat(width);
 	let mut output = Vec::new();
 
+	//	create our color index
 	let mut index = 0;
 	for n in 0..height {
 		if n != 0 && n % thresh == 0 {
 			index += 1;
+			//	and break if out of bounds
 			if index >= count { break; }
 		}
 		let color = colors[index];

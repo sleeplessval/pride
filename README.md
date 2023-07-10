@@ -3,16 +3,12 @@
 
 A Rust utility to display pride flags in the terminal.
 
-**This project is under heavy construction! It is subject to major structural and
-architectural changes. There are no issues with functionality, but I will continue
-to make major changes and refactors until the main roadmap is complete.**
-
-Currently supports a variety of stripe flags.
+A list of currently implemented flags is available on the [project wiki](https://git.vwolfe.io/valerie/pride/wiki/Flags).
 
 ## Dependencies
 
-Complex renderers often use [Powerline's slant](https://github.com/ryanoasis/powerline-extra-symbols)
-symbols, and therefore require use of a Powerline font, such as [Fira Code](https://github.com/tonsky/FiraCode).
+Some Complex renderers utilize [Powerline's](https://github.com/ryanoasis/powerline-extra-symbols)
+slant symbols, and therefore require use of a Powerline font, such as [Fira Code](https://github.com/tonsky/FiraCode).
 
 ## Libraries
 

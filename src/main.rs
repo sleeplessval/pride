@@ -14,6 +14,7 @@ use crate::flag::Flag;
 static VERSION: &str = env!("CARGO_PKG_VERSION");
 
 fn main() {
+	//	collect args
 	let mut args = Arguments::from_env();
 
 	//	handle help flag
@@ -39,8 +40,10 @@ fn main() {
 
 	let subcommand = args.subcommand().unwrap();
 
+	//	get color vec from matched flag
 	let flag: Flag = match subcommand.as_deref() {
-		Some("pride" | "gay")
+		Some("pride" | "rainbow")
+		| None
 			=>	{
 				let variant = args.subcommand().unwrap_or(None);
 				match variant.as_deref() {
@@ -86,8 +89,14 @@ fn main() {
 //		Some("disability")
 //			=>	complex::disability();
 
+		Some("gay" | "mlm")
+			=>	flag::gay(),
+
 		Some("genderfluid")
 			=>	flag::genderfluid(),
+
+		Some("gender-nonconforming" | "gnc" | "gendernonconforming")
+			=>	flag::gender_nonconforming(),
 
 		Some("genderqueer")
 			=>	flag::genderqueer(),
@@ -125,7 +134,7 @@ fn help_text() {
 	println!("Valerie Wolfe <sleeplessval@gmail.com>");
 	println!("Show pride flags in the terminal.\n");
 
-	println!("usage: pride [flags] <name>\n");
+	println!("usage: pride [flags] [name]\n");
 
 	println!("args:");
 	println!("   <name>         The pride flag to display\n");
@@ -152,8 +161,9 @@ fn list_text() {
 	println!("   demiromantic           demiromantic pride flag");
 	println!("   demisexual             demisexual pride flag");
 //	println!("   disability             disability pride flag");
-	println!("   gay, pride             six-color rainbow flag");
+	println!("   gay, mlm               gay men pride flag");
 	println!("   genderfluid            genderfluid pride flag");
+	println!("   gender-nonconforming   gender nonconforming pride flag");
 	println!("   genderqueer            genderqueer pride flag");
 	println!("   gendervoid             gendervoid pride flag");
 //	println!("   intersex               intersex pride flag");
@@ -162,6 +172,8 @@ fn list_text() {
 	println!("   nb, nonbinary          nonbinary pride flag");
 	println!("   pan, pansexual         pansexual pride flag");
 //	println!("   poly, polyamorous      polyamorous pride flag");
+	println!("   pride, rainbow         six-color rainbow flag");
+	println!("   progress               progress arrow flag");
 	println!("   trans, transgender     transgender pride flag");
 }
 
