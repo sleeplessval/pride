@@ -28,23 +28,23 @@ pub fn list_text() {
 
 flag list:
    agender                agender pride flag
-   aro, aromantic         aromantic pride flag
+   aromantic              aromantic pride flag
    aroace                 aromantic-asexual pride flag
-   ace, asexual           asexual pride flag
+   asexual                asexual pride flag
    bigender               bigender pride flag
-   bi, bisexual           bisexual pride flag
-   gay, mlm               gay men pride flag
+   bisexual               bisexual pride flag
+   gay                    gay men pride flag
    genderfluid            genderfluid pride flag
    gender-nonconforming   gender nonconforming pride flag
    genderqueer            genderqueer pride flag
    gendervoid             gendervoid pride flag
    lesbian                lesbian pride flag
    multigender            multigender pride flag
-   nb, nonbinary          nonbinary pride flag
-   pan, pansexual         pansexual pride flag
-   pride, rainbow         six-color rainbow flag
+   nonbinary              nonbinary pride flag
+   pansexual              pansexual pride flag
+   rainbow                six-color rainbow flag
    progress               progress arrow rainbow flag
-   trans, transgender     transgender pride flag");
+   transgender            transgender pride flag");
 }
 
 pub fn flag_help(flag: &str) {
