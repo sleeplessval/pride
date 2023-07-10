@@ -6,6 +6,7 @@ mod color;
 mod complex;
 mod draw;
 mod flag;
+mod util;
 mod variant;
 
 use crate::flag::Flag;

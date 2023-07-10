@@ -9,7 +9,8 @@ use termion::{
 use crate::{
 	color::*,
 	draw,
-	flag::{ self, Flag }
+	flag::{ self, Flag },
+	util::{ ansi_len, ansi_substr }
 };
 
 ///	vertically stacking eighths
@@ -38,18 +39,18 @@ pub fn progress(small: bool) -> Flag {
 	let black:	u32 = 0;
 	let brown:	u32 = 0x784F17;
 	let ltblue:	u32 = 0xEAACB8;
-	let pink:	u32 = 0xEAACB8;
+	let pink:	u32 = 0x7ACBF5;
 	let white:	u32 = 0xFFFFFF;
 
 	let (width, height) = if small { (18, 6) } else { terminal_size().unwrap() };
 
 	//	create color slices and line buffer
 	let stripes = [red, orange, yellow, green, blue, purple];
-	let chevrons = [white, pink, ltblue, brown, black];
+	let chevrons = [white, ltblue, pink, brown, black];
 	let mut lines: Vec<String> = Vec::new();
 
 	//	set up stripe index
-	let mut stripe_index = 0;
+	let mut index = 0;
 
 	/*	ok, coming up with procedure:
 	 *	- can't rely on bg_stripes; line count, threshold, etc., will need to happen here
@@ -63,43 +64,93 @@ pub fn progress(small: bool) -> Flag {
 
 	//	set up constraints
 	let linecount = height - (height % 6);	//	largest multiple of 6 smaller than height
-	let full_depth = linecount / 2;
+	let full_depth = width / 3;
+	let chevron_width = (full_depth / 6) - 1;
+	let direction_thresh = linecount / 2;
 	let corner = linecount % 2 == 1;
-	let chevron_width = 0;					//	chevron width (TODO)
-	let thresh = height / linecount;		//	stripe threshold; no bg_stripes call!
+	
+	let thresh = linecount / 6;				//	stripe threshold; no bg_stripes call!
 	let mut line_no = 0;					//	absolute line number; n is relative
 
+	//	chevron helper
+	let build_chevron = | separator: char | -> String {
+		let mut output = format!(
+			"{fg}{bg}{stripe}{separator}",
+			fg = rgb(chevrons[0]),
+			bg = bg(chevrons[1]),
+			stripe = draw::BLOCK.repeat( usize::max(chevron_width as usize * 2, 1) )
+		);
+		let stripe = draw::BLOCK.repeat(chevron_width as usize);
+		for i in 1..4 {
+			output += &format!(
+				"{fg}{bg}{stripe}{separator}",
+				fg = rgb(chevrons[i]),
+				bg = bg(chevrons[i + 1])
+			);
+		}
+		output += &format!(
+			"{fg}{stripe}",
+			fg = rgb(chevrons[4])
+		);
+
+		output
+	};
+
 	//	piecewise functions: ascent -> peak -> descent
-	for n in 0..full_depth {
+	let mut base = build_chevron(TRIANGLE_21[0]);
+	let base_length = base.len();
+	let display_length = ansi_len(&base) + 1;	//	chevron width will always stay the same; add 1 for the last separator
+	for n in 0..direction_thresh {
 		//	advance stripe color at stripe threshold by line number
-		if line_no != 0 && line_no % thresh == 0 { stripe_index += 1; }
+		if line_no != 0 && line_no % thresh == 0 { index += 1; }
 
-		//	init current line
-		let line = String::new();
+		//	grab our substring constraints
+		let start = (direction_thresh - n) as usize - 1;
+		let diff = display_length - start;
 
-		//	get this line's depth?
-		//	get chevron start: (full_depth - line_depth) / chevron_width = chevron_start
-		let start: i16 = 2 - (n as i16);
-
-		//	for chevron_index in chevron_start..5
-		//		if chevron_index = 4, draw stripe after (stripe width = width - line_depth - 1)
-		//		else, draw <fg:chevron_index,bg:chevron_index+1>BLOCK.repeat(chevron_width) + TRIANGLE_21[0]
+		//	take substring of chevron line...
+		let mut line = ansi_substr(&base, start as usize, base_length);
+		//	... and add the colored stripe
+		line += &format!(
+			"{stripe}{separator}{line}",
+			stripe = stripes[index],
+			separator = TRIANGLE_21[0],
+			line = " ".repeat(width as usize - diff)
+		);
 
 		lines.push(line);
 		line_no += 1;
 	}
 	if corner {
-		if line_no % thresh == 0 { stripe_index += 1; }
+		if line_no % thresh == 0 { index += 1; }
 
-		let line = String::new();
+		let base = build_chevron(TRIANGLE_21[1]);
+		let mut line = ansi_substr(&base, 0, base_length);
+		line += &format!(
+			"{stripe}{separator}{line}",
+			stripe = stripes[index],
+			separator = TRIANGLE_21[1],
+			line = " ".repeat(width as usize - display_length)
+		);
 
 		lines.push(line);
 		line_no += 1;
 	}
-	for n in 0..full_depth {
-		if line_no % thresh == 0 { stripe_index += 1; }
+	base = build_chevron(TRIANGLE_21[2]);
+	for n in 0..direction_thresh {
+		if line_no % thresh == 0 { index += 1; }
+		if index > 5 { break; }
 
-		let line = String::new();
+		let start = n as usize;
+		let diff = display_length - start;
+
+		let mut line = ansi_substr(&base, start, base_length);
+		line += &format!(
+			"{stripe}{separator}{line}",
+			stripe = stripes[index],
+			separator = TRIANGLE_21[2],
+			line = " ".repeat(width as usize - diff)
+		);
 
 		lines.push(line);
 		line_no += 1;
