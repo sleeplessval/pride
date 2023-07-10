@@ -123,7 +123,7 @@ fn main() {
 //			=>	complex::polyamorous(),
 
 		Some("progress")
-			=>	flag::progress(),
+			=>	complex::progress(small),
 
 		_ => { help_text(); exit(1) }
 	};
