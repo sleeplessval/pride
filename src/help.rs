@@ -49,12 +49,12 @@ flag list:
 
 pub fn flag_help(flag: &str) {
 	match flag {
-		"pride" | "rainbow"
+		"pride" | "rainbow" | "-"
 			=> {
 			println!("The ubiquitous 1979 6-color rainbow pride flag, representing the larger queer community.
 
 names:
-   'pride', 'rainbow'
+   'pride', 'rainbow', '-'
 
 variants:
    8-color            Gilbert Baker's original 1978 flag with 8 stripes
@@ -63,6 +63,8 @@ variants:
    philadelphia       The 2017 Philadelphia Pride flag with black and brown stripes
    progress           The 2018 Progess rainbow pride flag designed by Daniel Quasar");
 			},
+		"progress"
+			=> { println!("Daniel Quasar's 2018 Progress rainbow pride flag.\n\nnames:\n   'progress'"); }
 
 		"transgender" | "trans"
 			=> {
@@ -72,9 +74,47 @@ names:
    'transgender', 'trans'");
 			},
 
+		//	alphabetical below this point
+
+		"aromantic" | "aro"
+			=> { println!("The aromantic pride flag.\n\nnames:\n   'aromantic', 'aro'"); }
+		"asexaul" | "ace"
+			=> { println!("The asexual pride flag.\n\nnames:\n   'asexual', 'ace'"); }
+		"aroace" | "aromantic-asexual"
+			=> {
+				println!("The aromantic-asexual pride flag.
+
+names:
+   'aroace', 'aromantic-asexual'
+
+notes:
+   Currently only displays in terminals 20 lines or taller.");
+			},
+
+		"bisexual" | "bi"
+			=> {
+				println!("The bisexual flag designed by Michael Page in 1998.
+
+names:
+   'bisexual', 'bi'");
+			},
+
+
+		"gay" | "mlm"
+			=> {
+				println!("The 7-stripe gay men pride flag designed by @gayflagblog on tumblr in 2019.
+
+names:
+   'gay', 'mlm'");
+			},
+
+		"gender-nonconforming" | "gendernonconforming" | "gnc"
+			=> { println!("The gender-nonconforming pride flag.\n\nnames:\n   'gender-nonconforming', 'gendernonconforming', 'gnc'"); },
+
+
 		"lesbian"
 			=> {
-				println!("Emily Gwen's 2018 5-stripe lesbian flag.
+				println!("The 5-stripe lesbian flag designed by Emily Gwen in 2018.
 
 names:
    'lesbian'
@@ -82,11 +122,28 @@ names:
 variants:
    7-color            7-stripe flag, also designed in 2018 by Emily Gwen");
 			},
-		"progress"
-			=> { println!("Daniel Quasar's 2018 Progress rainbow pride flag.\n\nnames:\n   'progress'"); }
+
+
+		"nonbinary" | "nb"
+			=> {
+				println!("The nonbinary pride flag designed by Kyle Rowan in 2014.
+
+names:
+   'nonbinary', 'nb'");
+			},
+
+
+		"pansexual" | "pan"
+			=> {
+				println!("The pansexual pride flag designed by Jasper V around 2010
+
+names:
+   'pansexual', 'pan'");
+			},
+
 
 		_
-			=> help_text()
+			=> { help_text(); }
 	}
 }
 

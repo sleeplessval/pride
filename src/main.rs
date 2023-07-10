@@ -6,11 +6,8 @@ mod color;
 mod complex;
 mod draw;
 mod flag;
-<<<<<<< HEAD
 mod help;
-=======
 mod util;
->>>>>>> main
 mod variant;
 
 use crate::flag::Flag;
@@ -137,9 +134,9 @@ fn main() {
 //			=>	complex::polyamorous(),
 
 		Some("progress")
-			=>	flag::progress(),
+			=>	complex::progress(small),
 
-		_ => { help_text(); exit(1) }
+		_ => { help::help_text(); exit(1) }
 	};
 
 	flag.draw(!small);
