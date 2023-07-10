@@ -4,76 +4,110 @@ use termion::{
 	terminal_size,
 
 	clear,
+	color::{ Bg, Fg, Rgb },
 	cursor,
 	input::TermRead,
 	raw::IntoRawMode
 };
 
-use crate::color::{ RESET, Colors };
-use crate::flag::BLOCK;
+use crate::{
+	color::{ RESET, RESET_BG },
+	flag::Flag
+};
 
-///	draw a fullscreen stripe flag and hold for keypress
-pub fn full(colors: Colors) {
-	//	prepare stdin and stdout
+pub static BLOCK: &str = "█";
+pub static UHALF: &str = "▀";
+
+pub fn draw_lines(lines: Vec<String>, hold: bool) {
 	let mut stdout = io::stdout().into_raw_mode().unwrap();
-	let stdin = io::stdin();
 
-	//	get constraints
-	let count = colors.len();
-	let (width, height) = terminal_size().unwrap();
-	let thresh = height as usize / count;
+	let count = lines.len() as u16;
+	for _ in 0..count { write!(stdout, "\n").ok(); }
+	write!(stdout, "{}", cursor::Up(count)).ok();
 
-	//	clear the terminal
-	write!(stdout, "{}{}", cursor::Hide, clear::All).ok();
+	if hold { write!(stdout, "{}{}", cursor::Hide, clear::All).ok(); }
+
+	let down = cursor::Down(1);
+	for line in lines {
+		let left = cursor::Left(line.len() as u16);
+		write!(stdout, "{line}{left}{down}").ok();
+	}
+
+	write!(stdout, "{RESET}{RESET_BG}").ok();
 	stdout.flush().ok();
+	if hold {
+		let stdin = io::stdin();
+		for _ in stdin.keys() { break; }
+		write!(stdout, "{}", clear::All).ok();
+	}
+	write!(stdout, "{}", cursor::Show).ok();
+	stdout.flush().ok();
+}
 
-	//	build terminal width stripe string
-	let stripe = BLOCK.repeat(width as usize);
+pub fn fg_stripes(colors: Vec<Fg<Rgb>>, width: u16, height: u16) -> Vec<String> {
+	let width = width as usize;
+	let height = height as usize;
+	let count = colors.len();
+
+	let thresh = height / count;
+
+	let stripe = BLOCK.repeat(width);
+	let mut output = Vec::new();
 
 	//	create our color index
 	let mut index = 0;
-	//	for every terminal row...
-	for n in 0..(height as usize) {
-		//	... increment our index at color change threshold
+	for n in 0..height {
 		if n != 0 && n % thresh == 0 {
 			index += 1;
 			//	and break if out of bounds
 			if index >= count { break; }
 		}
-		//	... draw the stripe with color at index
-		write!(
-			stdout,
-			"{color}{stripe}{RESET}",
-			color = colors[index]
-		).ok();
+		let color = colors[index];
+		output.push(format!("{color}{stripe}"));
 	}
-	//	flush stdout
-	stdout.flush().ok();
 
-	//	wait for keypress
-	for _ in stdin.keys() { break; }
-	write!(stdout, "{}{}", cursor::Show, clear::All).ok();
-	stdout.flush().ok();
+	output
+}
+pub fn bg_stripes(colors: Vec<Bg<Rgb>>, width: u16, height: u16) -> Vec<String> {
+	let width = width as usize;
+	let height = height as usize;
+	let count = colors.len();
+
+	let thresh = height / count;
+
+	let stripe = " ".repeat(width);
+	let mut output = Vec::new();
+
+	let mut index = 0;
+	for n in 0..height {
+		if n != 0 && n % thresh == 0 {
+			index += 1;
+			if index >= count { break; }
+		}
+		let color = colors[index];
+		output.push(format!("{color}{stripe}"));
+	}
+
+	output
 }
 
-///	draws a small stripe flag
-pub fn small(colors: Colors) {
-	//	prepare stdout
-	let mut stdout = io::stdout();
-
-	//	get constraints
-	let count = colors.len();
-	let width = count * 3;
-
-	// build small stripe string
-	let stripe = BLOCK.repeat(width);
-
-	//	print a stripe for all colors
-	for color in colors {
-		println!("{color}{stripe}");
+impl Flag {
+	pub fn draw(self, hold: bool) {
+		let lines = match self {
+			Flag::Stripes(colors)
+				=> {
+					let (width, height);
+					if hold { (width, height) = terminal_size().unwrap(); }
+					else {
+						height = colors.len() as u16;
+						width = height * 3;
+					}
+					fg_stripes(colors, width, height)
+				},
+			Flag::Lines(lines)
+				=>	lines
+		};
+		draw_lines(lines, hold);
 	}
-	//	reset our foreground color to play nice and flush stdout
-	print!("{RESET}");
-	stdout.flush().ok();
 }
 

@@ -3,12 +3,17 @@ use std::process::exit;
 use pico_args::Arguments;
 
 mod color;
+mod complex;
 mod draw;
 mod flag;
+<<<<<<< HEAD
 mod help;
+=======
+mod util;
+>>>>>>> main
 mod variant;
 
-use crate::color::Colors;
+use crate::flag::Flag;
 
 static VERSION: &str = env!("CARGO_PKG_VERSION");
 
@@ -42,7 +47,7 @@ fn main() {
 	let subcommand = args.subcommand().unwrap();
 
 	//	get color vec from matched flag
-	let colors: Colors = match subcommand.as_deref() {
+	let flag: Flag = match subcommand.as_deref() {
 		Some("pride" | "rainbow")
 		| None
 			=>	{
@@ -52,6 +57,8 @@ fn main() {
 						=>	variant::gilbert_baker(),
 					Some("philadelphia")
 						=>	variant::philadelphia(),
+					Some("progress")
+						=>	complex::progress(small),
 					_
 						=>	flag::pride()
 				}
@@ -70,11 +77,23 @@ fn main() {
 		Some("asexual" | "ace")
 			=>	flag::asexual(),
 
+		Some("aroace" | "aromantic-asexual")
+			=>	complex::aroace(small),
+
 		Some("bigender")
 			=>	flag::bigender(),
 
 		Some("bisexual" | "bi")
 			=>	flag::bisexual(),
+
+		Some("demiromantic")
+			=>	complex::demiromantic(small),
+
+		Some("demisexual")
+			=>	complex::demisexual(small),
+
+//		Some("disability")
+//			=>	complex::disability();
 
 		Some("gay" | "mlm")
 			=>	flag::gay(),
@@ -90,6 +109,9 @@ fn main() {
 
 		Some("gendervoid")
 			=>	flag::gendervoid(),
+
+		Some("intersex")
+			=>	complex::intersex(),
 
 		Some("lesbian")
 			=>	{
@@ -111,11 +133,16 @@ fn main() {
 		Some("pansexual" | "pan")
 			=>	flag::pansexual(),
 
-		_ => { help::help_text(); exit(1) }	//	(or die)
+//		Some("poly" | "polyamorous" | "polyamory")
+//			=>	complex::polyamorous(),
+
+		Some("progress")
+			=>	flag::progress(),
+
+		_ => { help_text(); exit(1) }
 	};
 
-	if small { draw::small(colors); }
-	else { draw::full(colors); }
+	flag.draw(!small);
 
 }
 

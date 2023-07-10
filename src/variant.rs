@@ -3,10 +3,10 @@
 
 use crate::{
 	color::*,
-	flag
+	flag::{ self, Flag }
 };
 
-pub fn gilbert_baker() -> Colors {
+pub fn gilbert_baker() -> Flag {
 	let pink	= rgb(0xFF69B4);	//	sex
 	let red		= rgb(0xFF0000);	//	life
 	let orange	= rgb(0xFF8F00);	//	healing
@@ -16,20 +16,26 @@ pub fn gilbert_baker() -> Colors {
 	let indigo	= rgb(0x3E0099);	//	serenity
 	let purple	= rgb(0x8F008F);	//	spirit
 
-	vec![pink, red, orange, yellow, green, cyan, indigo, purple]
+	Flag::Stripes(vec![pink, red, orange, yellow, green, cyan, indigo, purple])
 }
 
-pub fn philadelphia() -> Colors {
+pub fn philadelphia() -> Flag {
 	let brown = rgb(0x784F17);
 
-	let mut output = flag::pride();
-	output.insert(0, BLACK);
-	output.insert(1, brown);
+	let base = flag::pride();
+	let mut colors = match base {
+		Flag::Stripes(inner)
+			=>	inner,
+		_
+			=>	{ panic!("impossible enum variant"); }
+	};
+	colors.insert(0, BLACK);
+	colors.insert(1, brown);
 
-	output
+	Flag::Stripes(colors)
 }
 
-pub fn lesbian_7() -> Colors {
+pub fn lesbian_7() -> Flag {
 	let orange1	= rgb(0xD52D00);	//	gender non-conformity
 	let orange2	= rgb(0xEF7627);	//	independence
 	let orange3	= rgb(0xFF9A56);	//	community
@@ -38,6 +44,6 @@ pub fn lesbian_7() -> Colors {
 	let pink2	= rgb(0xB55690);	//	love and sex
 	let pink3	= rgb(0xA30262);	//	femininity
 
-	vec![orange1, orange2, orange3, WHITE, pink1, pink2, pink3]
+	Flag::Stripes(vec![orange1, orange2, orange3, WHITE, pink1, pink2, pink3])
 }
 

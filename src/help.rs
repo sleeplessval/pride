@@ -29,6 +29,7 @@ pub fn list_text() {
 flag list:
    agender                agender pride flag
    aro, aromantic         aromantic pride flag
+   aroace                 aromantic-asexual pride flag
    ace, asexual           asexual pride flag
    bigender               bigender pride flag
    bi, bisexual           bisexual pride flag
@@ -42,6 +43,7 @@ flag list:
    nb, nonbinary          nonbinary pride flag
    pan, pansexual         pansexual pride flag
    pride, rainbow         six-color rainbow flag
+   progress               progress arrow rainbow flag
    trans, transgender     transgender pride flag");
 }
 
@@ -58,7 +60,8 @@ variants:
    8-color            Gilbert Baker's original 1978 flag with 8 stripes
    gilbert-baker
    sex-and-magic
-   philadelphia       The 2017 Philadelphia Pride flag with black and brown stripes");
+   philadelphia       The 2017 Philadelphia Pride flag with black and brown stripes
+   progress           The 2018 Progess rainbow pride flag designed by Daniel Quasar");
 			},
 
 		"transgender" | "trans"
@@ -78,7 +81,9 @@ names:
 
 variants:
    7-color            7-stripe flag, also designed in 2018 by Emily Gwen");
-			}
+			},
+		"progress"
+			=> { println!("Daniel Quasar's 2018 Progress rainbow pride flag.\n\nnames:\n   'progress'"); }
 
 		_
 			=> help_text()
