@@ -122,6 +122,9 @@ fn main() {
 //		Some("poly" | "polyamorous" | "polyamory")
 //			=>	complex::polyamorous(),
 
+		Some("progress")
+			=>	flag::progress(),
+
 		_ => { help_text(); exit(1) }
 	};
 
