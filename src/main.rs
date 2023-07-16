@@ -119,8 +119,8 @@ fn main() {
 		Some("pansexual" | "pan")
 			=>	flag::pansexual(),
 
-//		Some("poly" | "polyamorous" | "polyamory")
-//			=>	complex::polyamorous(),
+		Some("polyamory" | "polyamorous" | "poly")
+			=>	complex::polyamory(small),
 
 		Some("progress")
 			=>	complex::progress(small),
@@ -174,7 +174,7 @@ fn list_text() {
 	println!("   multigender            multigender pride flag");
 	println!("   nb, nonbinary          nonbinary pride flag");
 	println!("   pan, pansexual         pansexual pride flag");
-//	println!("   poly, polyamorous      polyamorous pride flag");
+	println!("   polyamory              polyamorous pride flag");
 	println!("   pride, rainbow         six-color rainbow flag");
 	println!("   progress               progress arrow flag");
 	println!("   trans, transgender     transgender pride flag");

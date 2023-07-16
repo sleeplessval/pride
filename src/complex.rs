@@ -52,16 +52,6 @@ pub fn progress(small: bool) -> Flag {
 	//	set up stripe index
 	let mut index = 0;
 
-	/*	ok, coming up with procedure:
-	 *	- can't rely on bg_stripes; line count, threshold, etc., will need to happen here
-	 *	- line count will always be the largest multiple of 6 smaller than height; c = h - (h % 6)
-	 *	- chevrons may have larger widths: TODO calc
-	 *	- depth will be funky; line depth will need to use "full" depth; (Df - Dl) / Wc = Ic (TODO verify?)
-	 *	- switch stripe index on *absolute* line number rather than n
-	 *	- chevron building will be BLOCK.repeat(width) + TRIANGLE_21[0] (fg Ic, bg Ic + 1)
-	 *		- chevrons[len - 1] will need unique handling to draw stripes
-	 */
-
 	//	set up constraints
 	let linecount = height - (height % 6);	//	largest multiple of 6 smaller than height
 	let full_depth = width / 3;
@@ -280,13 +270,62 @@ pub fn intersex() -> Flag {
 	Flag::Lines(lines)
 }
 
-pub fn polyamorous() {
+pub fn polyamory(small: bool) -> Flag {
 	let blue	= rgb(0x019FE3);
 	let magenta	= rgb(0xE50051);
 	let purple	= rgb(0x340C46);
-	let yellow	= rgb(0x00FCBF);
+	let yellow	= rgb(0xFCBF00);
+	let white	= bg(0xFFFFFF);
 
-	//	blue / magenta / purple vert
-	//	WHITE isosceles cutin with yellow heart pointed right
+	//	special characters
+	let semicircle = '\u{E0B6}';
+	let separators = ['\u{E0BE}', '\u{E0BA}'];
+
+	let (width, height) = if small { (18, 6) } else { terminal_size().unwrap() };
+
+	//	create stripe array and line buffer
+	let stripes = [magenta, purple];		//	only stripes 2 and 3 need tracked
+	let mut lines: Vec<String> = Vec::new();
+
+	//	constraints
+	let linecount = height - (height % 3);	//	largest multiple of 3 smaller than height
+	let full_depth = width / 3;
+	let thresh = linecount / 3;				//	stripe & direction thresh
+	let start = width / 6;
+
+	//	piecewise function: ascent -> descent
+	let mut separator = separators[0];
+	for n in 0..thresh {
+		let size = start + n;
+
+		let line = format!(
+			"{white}{yellow}{cutin}{blue}{separator}{stripe}",
+			cutin = " ".repeat(size as usize),
+			stripe = draw::BLOCK.repeat((width - (size + 1)) as usize)
+		);
+
+		lines.push(line);
+	}
+	//	first piece goes until the end of stripes[0]
+	let mut index = 0;						//	stripe index
+	separator = separators[1];
+	for n in thresh..linecount {
+		//	advance index at threshold
+		if n == (thresh * 2) { index = 1; }
+
+		let rel = (n - thresh) + 2;
+		let size = full_depth - rel;
+		let color = stripes[index];
+
+		let line = format!(
+			"{white}{yellow}{cutin}{color}{separator}{stripe}",
+			cutin = " ".repeat(size as usize),
+			stripe = draw::BLOCK.repeat((width - (size + 1)) as usize)
+		);
+
+		lines.push(line);
+	}
+
+	Flag::Lines(lines)
 }
 
