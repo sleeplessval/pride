@@ -1,4 +1,7 @@
-use std::process::exit;
+use std::{
+	io::{ stdout, IsTerminal },
+	process::exit
+};
 
 use pico_args::Arguments;
 
@@ -33,6 +36,11 @@ fn main() {
 	if args.contains("--version") {
 		println!("pride v{VERSION}");
 		return;
+	}
+
+	if !stdout().is_terminal() {
+		println!("pride: output must be a terminal");
+		exit(2);
 	}
 
 	//	get small flag
