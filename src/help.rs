@@ -78,7 +78,7 @@ names:
 
 		"aromantic" | "aro"
 			=> { println!("The aromantic pride flag.\n\nnames:\n   'aromantic', 'aro'"); }
-		"asexaul" | "ace"
+		"asexual" | "ace"
 			=> { println!("The asexual pride flag.\n\nnames:\n   'asexual', 'ace'"); }
 		"aroace" | "aromantic-asexual"
 			=> {
