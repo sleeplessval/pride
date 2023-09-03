@@ -46,14 +46,14 @@ fn main() {
 	//	get small flag
 	let small = args.contains(["-s", "--small"]);
 
-	let subcommand = args.subcommand().unwrap();
+	let subcommand	= args.subcommand().unwrap();
+	let variant		= args.subcommand().unwrap_or(None);
 
 	//	get color vec from matched flag
 	let flag: Flag = match subcommand.as_deref() {
 		Some("pride" | "rainbow")
 		| None
 			=>	{
-				let variant = args.subcommand().unwrap_or(None);
 				match variant.as_deref() {
 					Some("8-color" | "gilbert-baker" | "sex-and-magic")
 						=>	variant::gilbert_baker(),
@@ -66,8 +66,8 @@ fn main() {
 				}
 			},
 
-		Some("transgender" | "trans")
-			=>	flag::transgender(),
+		Some("progress")
+			=>	complex::progress(small),
 
 
 		Some("agender")
@@ -80,7 +80,14 @@ fn main() {
 			=>	flag::asexual(),
 
 		Some("aroace" | "aromantic-asexual")
-			=>	complex::aroace(small),
+			=>	{
+				match variant.as_deref() {
+					Some("halves" | "side-by-side" | "sbs")
+						=>	complex::aroace(small),
+					_
+						=>	flag::aroace()
+				}
+			},
 
 		Some("bigender")
 			=>	flag::bigender(),
@@ -112,8 +119,8 @@ fn main() {
 		Some("gendervoid")
 			=>	flag::gendervoid(),
 
-		Some("intersex")
-			=>	complex::intersex(),
+//		Some("intersex")
+//			=>	complex::intersex(),
 
 		Some("lesbian")
 			=>	flag::lesbian(),
@@ -130,8 +137,8 @@ fn main() {
 		Some("polyamory" | "polyamorous" | "poly")
 			=>	complex::polyamory(small),
 
-		Some("progress")
-			=>	complex::progress(small),
+		Some("transgender" | "trans")
+			=>	flag::transgender(),
 
 		_ => { help_text(); exit(1) }
 	};
