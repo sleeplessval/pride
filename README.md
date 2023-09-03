@@ -12,6 +12,6 @@ slant symbols, and therefore require use of a Powerline font, such as [Fira Code
 
 ## Libraries
 
-- [pico-args](https://crates.io/crates/pico-args)
-- [termion](https://crates.io/crates/termion)
+- [pico-args](https://crates.io/crates/pico-args) — argument parsing
+- [termion](https://crates.io/crates/termion) — ANSI formatting
 

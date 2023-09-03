@@ -20,13 +20,6 @@ pub fn pride() -> Flag {
 	Flag::Stripes(vec![red, orange, yellow, green, blue, purple])
 }
 
-pub fn transgender() -> Flag {
-	let pink	= rgb(0x7ACBF5);
-	let blue	= rgb(0xEAACB8);
-
-	Flag::Stripes(vec![pink, blue, WHITE, blue, pink])
-}
-
 //	everything below here is alphabetical
 
 pub fn agender() -> Flag {
@@ -49,6 +42,15 @@ pub fn asexual() -> Flag {
 	let purple	= rgb(0x810081);
 
 	Flag::Stripes(vec![BLACK, grey, WHITE, purple])
+}
+
+pub fn aroace() -> Flag {
+	let orange	= rgb(0xE28D00);
+	let yellow	= rgb(0xEBE200);
+	let blue	= rgb(0x67B7E8);
+	let navy	= rgb(0x203756);
+
+	Flag::Stripes(vec![orange, yellow, WHITE, blue, navy])
 }
 
 pub fn bigender() -> Flag {
@@ -140,4 +142,12 @@ pub fn pansexual() -> Flag {
 
 	Flag::Stripes(vec![magenta, yellow, cyan])
 }
+
+pub fn transgender() -> Flag {
+	let pink	= rgb(0x7ACBF5);
+	let blue	= rgb(0xEAACB8);
+
+	Flag::Stripes(vec![pink, blue, WHITE, blue, pink])
+}
+
 

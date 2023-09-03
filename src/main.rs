@@ -1,4 +1,7 @@
-use std::process::exit;
+use std::{
+	io::{ stdout, IsTerminal },
+	process::exit
+};
 
 use pico_args::Arguments;
 
@@ -38,17 +41,22 @@ fn main() {
 		return;
 	}
 
+	if !stdout().is_terminal() {
+		println!("pride: output must be a terminal");
+		exit(2);
+	}
+
 	//	get small flag
 	let small = args.contains(["-s", "--small"]);
 
-	let subcommand = args.subcommand().unwrap();
+	let subcommand	= args.subcommand().unwrap();
+	let variant		= args.subcommand().unwrap_or(None);
 
 	//	get color vec from matched flag
 	let flag: Flag = match subcommand.as_deref() {
 		Some("pride" | "rainbow")
 		| None
 			=>	{
-				let variant = args.subcommand().unwrap_or(None);
 				match variant.as_deref() {
 					Some("8-color" | "gilbert-baker" | "sex-and-magic")
 						=>	variant::gilbert_baker(),
@@ -61,8 +69,8 @@ fn main() {
 				}
 			},
 
-		Some("transgender" | "trans")
-			=>	flag::transgender(),
+		Some("progress")
+			=>	complex::progress(small),
 
 
 		Some("agender")
@@ -75,7 +83,14 @@ fn main() {
 			=>	flag::asexual(),
 
 		Some("aroace" | "aromantic-asexual")
-			=>	complex::aroace(small),
+			=>	{
+				match variant.as_deref() {
+					Some("halves" | "side-by-side" | "sbs")
+						=>	complex::aroace(small),
+					_
+						=>	flag::aroace()
+				}
+			},
 
 		Some("bigender")
 			=>	flag::bigender(),
@@ -107,8 +122,8 @@ fn main() {
 		Some("gendervoid")
 			=>	flag::gendervoid(),
 
-		Some("intersex")
-			=>	complex::intersex(),
+//		Some("intersex")
+//			=>	complex::intersex(),
 
 		Some("lesbian")
 			=>	{
@@ -130,11 +145,16 @@ fn main() {
 		Some("pansexual" | "pan")
 			=>	flag::pansexual(),
 
-//		Some("poly" | "polyamorous" | "polyamory")
-//			=>	complex::polyamorous(),
+		Some("polyamory" | "polyamorous" | "poly")
+			=>	complex::polyamory(small),
 
+<<<<<<< HEAD
 		Some("progress")
 			=>	complex::progress(small),
+=======
+		Some("transgender" | "trans")
+			=>	flag::transgender(),
+>>>>>>> main
 
 		_ => { help::help_text(); exit(1) }
 	};
@@ -143,3 +163,54 @@ fn main() {
 
 }
 
+<<<<<<< HEAD
+=======
+fn help_text() {
+	println!("pride v{VERSION}");
+	println!("Valerie Wolfe <sleeplessval@gmail.com>");
+	println!("Show pride flags in the terminal.\n");
+
+	println!("usage: pride [flags] [name]\n");
+
+	println!("args:");
+	println!("   <name>         The pride flag to display\n");
+
+	println!("flags:");
+	println!("   -h, --help     Shows this help text");
+	println!("   --version      Show version information");
+	println!("   -l, --list     Prints a list of printable flags");
+	println!("   -s, --small    Prints a small version without holding");
+
+	println!("\nUse 'pride --list' to see a list of printable flags");
+	println!("\n~ You're loved and you matter ♥");
+}
+
+fn list_text() {
+	println!("pride v{}", env!("CARGO_PKG_VERSION"));
+	println!("\nFlag list:");
+	println!("   agender                agender pride flag");
+	println!("   aro, aromantic         aromantic pride flag");
+	println!("   ace, asexual           asexual pride flag");
+	println!("   aroace                 aromantic/asexual pride flag");
+	println!("   bigender               bigender pride flag");
+	println!("   bi, bisexual           bisexual pride flag");
+	println!("   demiromantic           demiromantic pride flag");
+	println!("   demisexual             demisexual pride flag");
+//	println!("   disability             disability pride flag");
+	println!("   gay, mlm               gay men pride flag");
+	println!("   genderfluid            genderfluid pride flag");
+	println!("   gender-nonconforming   gender nonconforming pride flag");
+	println!("   genderqueer            genderqueer pride flag");
+	println!("   gendervoid             gendervoid pride flag");
+//	println!("   intersex               intersex pride flag");
+	println!("   lesbian                lesbian pride flag");
+	println!("   multigender            multigender pride flag");
+	println!("   nb, nonbinary          nonbinary pride flag");
+	println!("   pan, pansexual         pansexual pride flag");
+	println!("   polyamory              polyamorous pride flag");
+	println!("   pride, rainbow         six-color rainbow flag");
+	println!("   progress               progress arrow flag");
+	println!("   trans, transgender     transgender pride flag");
+}
+
+>>>>>>> main

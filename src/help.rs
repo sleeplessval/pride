@@ -1,7 +1,6 @@
 
 use crate::VERSION;
 
-
 pub fn help_text() {
 	println!("pride v{VERSION}
 Valerie Wolfe <sleeplessval@gmail.com>
@@ -33,6 +32,8 @@ flag list:
    asexual                asexual pride flag
    bigender               bigender pride flag
    bisexual               bisexual pride flag
+   demiromantic           demiromantic pride flag
+   demisexual             demisexual pride flag
    gay                    gay men pride flag
    genderfluid            genderfluid pride flag
    gender-nonconforming   gender nonconforming pride flag
@@ -82,10 +83,15 @@ names:
 			=> { println!("The asexual pride flag.\n\nnames:\n   'asexual', 'ace'"); }
 		"aroace" | "aromantic-asexual"
 			=> {
-				println!("The aromantic-asexual pride flag.
+				println!("The aromantic-asexual pride flag designed by aroaesflags on tumblr.
 
 names:
    'aroace', 'aromantic-asexual'
+
+variants:
+   halves            The side-by-side aromantic and asexual aroace flag
+   side-by-side
+   sbs
 
 notes:
    Currently only displays in terminals 20 lines or taller.");
