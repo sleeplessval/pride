@@ -94,7 +94,7 @@ variants:
    sbs
 
 notes:
-   Currently only displays in terminals 20 lines or taller.");
+   Side-by-side flag currently only displays in terminals 20 lines or taller.");
 			},
 
 		"bisexual" | "bi"
