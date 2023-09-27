@@ -289,9 +289,9 @@ pub fn polyamory(small: bool) -> Flag {
 
 	//	constraints
 	let linecount = height - (height % 3);	//	largest multiple of 3 smaller than height
-	let full_depth = width / 3;
+	let full_depth = linecount;
 	let thresh = linecount / 3;				//	stripe & direction thresh
-	let start = width / 6;
+	let start = 2 * full_depth / 3;
 
 	//	piecewise function: ascent -> descent
 	let mut separator = separators[0];
@@ -313,8 +313,7 @@ pub fn polyamory(small: bool) -> Flag {
 		//	advance index at threshold
 		if n == (thresh * 2) { index = 1; }
 
-		let rel = (n - thresh) + 2;
-		let size = full_depth - rel;
+		let size = (2 * start) - n - 1;
 		let color = stripes[index];
 
 		let line = format!(

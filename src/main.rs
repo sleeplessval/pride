@@ -125,6 +125,9 @@ fn main() {
 		Some("lesbian")
 			=>	flag::lesbian(),
 
+		Some("multisexual" | "m-spec" | "mspec")
+			=>	flag::multisexual(),
+
 		Some("multigender")
 			=>	flag::multigender(),
 
@@ -137,12 +140,16 @@ fn main() {
 		Some("polyamory" | "polyamorous" | "poly")
 			=>	complex::polyamory(small),
 
+		Some("polysexual")
+			=>	flag::polysexual(),
+
 		Some("transgender" | "trans")
 			=>	flag::transgender(),
 
 		_ => { help_text(); exit(1) }
 	};
 
+	//	draw flag
 	flag.draw(!small);
 
 }
@@ -186,10 +193,12 @@ fn list_text() {
 	println!("   gendervoid             gendervoid pride flag");
 //	println!("   intersex               intersex pride flag");
 	println!("   lesbian                lesbian pride flag");
+	println!("   multisexual            multisexual pride flag");
 	println!("   multigender            multigender pride flag");
 	println!("   nb, nonbinary          nonbinary pride flag");
 	println!("   pan, pansexual         pansexual pride flag");
 	println!("   polyamory              polyamorous pride flag");
+	println!("   polysexual             polysexual pride flag");
 	println!("   pride, rainbow         six-color rainbow flag");
 	println!("   progress               progress arrow flag");
 	println!("   trans, transgender     transgender pride flag");

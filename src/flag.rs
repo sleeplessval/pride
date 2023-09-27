@@ -128,6 +128,14 @@ pub fn multigender() -> Flag {
 	Flag::Stripes(vec![blue, ltblue, orange, ltblue, blue])
 }
 
+pub fn multisexual() -> Flag {
+	let purple	= rgb(0x724DC9);
+	let blue	= rgb(0xFF3D9B);
+	let pink	= rgb(0xFF3D9B);
+
+	Flag::Stripes(vec![purple, WHITE, blue, pink])
+}
+
 pub fn nonbinary() -> Flag {
 	let yellow	= rgb(0xFFF433);
 	let purple	= rgb(0x9B59D0);
@@ -141,6 +149,14 @@ pub fn pansexual() -> Flag {
 	let cyan	= rgb(0x1BB3FF);
 
 	Flag::Stripes(vec![magenta, yellow, cyan])
+}
+
+pub fn polysexual() -> Flag {
+	let pink	= rgb(0xF61CB9);
+	let green	= rgb(0x07D569);
+	let blue	= rgb(0x1C92F6);
+
+	Flag::Stripes(vec![pink, green, blue])
 }
 
 pub fn transgender() -> Flag {
