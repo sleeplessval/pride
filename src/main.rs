@@ -95,6 +95,14 @@ fn main() {
 		Some("bisexual" | "bi")
 			=>	flag::bisexual(),
 
+
+		Some("demiboy")
+			=>	flag::demiboy(),
+		Some("demigender")
+			=>	flag::demigender(),
+		Some("demigirl")
+			=>	flag::demigirl(),
+
 		Some("demiromantic")
 			=>	complex::demiromantic(small),
 

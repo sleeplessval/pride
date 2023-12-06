@@ -70,6 +70,29 @@ pub fn bisexual() -> Flag {
 	Flag::Stripes(vec![magenta, magenta, purple, blue, blue])
 }
 
+fn demigender_base(color: Color) -> Vec<Color> {
+	let grey	= rgb(0x7F7F7F);
+	let gray	= rgb(0xC3C3C3);
+	
+
+	vec![grey, gray, color, WHITE, color, gray, grey]
+}
+
+pub fn demiboy() -> Flag {
+	let blue	= rgb(0x7ACBF5);
+	Flag::Stripes(demigender_base(blue))
+}
+
+pub fn demigender() -> Flag {
+	let yellow	= rgb(0xFBFF74);
+	Flag::Stripes(demigender_base(yellow))
+}
+
+pub fn demigirl() -> Flag {
+	let pink	= rgb(0xEAACB8);
+	Flag::Stripes(demigender_base(pink))
+}
+
 pub fn gay() -> Flag {
 	let green1	= rgb(0x00906D);
 	let green2	= rgb(0x00D1A7);
