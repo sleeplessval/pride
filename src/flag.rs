@@ -53,6 +53,7 @@ pub fn aroace() -> Flag {
 	Flag::Stripes(vec![orange, yellow, WHITE, blue, navy])
 }
 
+
 pub fn bigender() -> Flag {
 	let pink	= rgb(0xE676A6);
 	let yellow	= rgb(0xF9F04C);
@@ -69,6 +70,31 @@ pub fn bisexual() -> Flag {
 
 	Flag::Stripes(vec![magenta, magenta, purple, blue, blue])
 }
+
+
+fn demigender_base(color: Color) -> Colors {
+	let grey	= rgb(0x7F7F7F);
+	let gray	= rgb(0xC3C3C3);
+	
+
+	vec![grey, gray, color, WHITE, color, gray, grey]
+}
+
+pub fn demiboy() -> Flag {
+	let blue	= rgb(0x7ACBF5);
+	Flag::Stripes(demigender_base(blue))
+}
+
+pub fn demigender() -> Flag {
+	let yellow	= rgb(0xFBFF74);
+	Flag::Stripes(demigender_base(yellow))
+}
+
+pub fn demigirl() -> Flag {
+	let pink	= rgb(0xEAACB8);
+	Flag::Stripes(demigender_base(pink))
+}
+
 
 pub fn gay() -> Flag {
 	let green1	= rgb(0x00906D);
@@ -111,6 +137,7 @@ pub fn gendervoid() -> Flag {
 	Flag::Stripes(vec![navy, gray, BLACK, gray, navy])
 }
 
+
 pub fn lesbian() -> Flag {
 	let red		= rgb(0xD62800);
 	let orange	= rgb(0xFF9B56);
@@ -120,6 +147,7 @@ pub fn lesbian() -> Flag {
 	Flag::Stripes(vec![red, orange, WHITE, pink, magenta])
 }
 
+
 pub fn multigender() -> Flag {
 	let blue	= rgb(0x3F47CC);
 	let ltblue	= rgb(0x01A4E9);
@@ -128,12 +156,22 @@ pub fn multigender() -> Flag {
 	Flag::Stripes(vec![blue, ltblue, orange, ltblue, blue])
 }
 
+pub fn multisexual() -> Flag {
+	let purple	= rgb(0x724DC9);
+	let blue	= rgb(0xFF3D9B);
+	let pink	= rgb(0xFF3D9B);
+
+	Flag::Stripes(vec![purple, WHITE, blue, pink])
+}
+
+
 pub fn nonbinary() -> Flag {
 	let yellow	= rgb(0xFFF433);
 	let purple	= rgb(0x9B59D0);
 
 	Flag::Stripes(vec![yellow, WHITE, purple, BLACK])
 }
+
 
 pub fn pansexual() -> Flag {
 	let magenta	= rgb(0xFF1B8D);
@@ -142,6 +180,15 @@ pub fn pansexual() -> Flag {
 
 	Flag::Stripes(vec![magenta, yellow, cyan])
 }
+
+pub fn polysexual() -> Flag {
+	let pink	= rgb(0xF61CB9);
+	let green	= rgb(0x07D569);
+	let blue	= rgb(0x1C92F6);
+
+	Flag::Stripes(vec![pink, green, blue])
+}
+
 
 pub fn transgender() -> Flag {
 	let pink	= rgb(0x7ACBF5);

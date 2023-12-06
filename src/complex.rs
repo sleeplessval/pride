@@ -181,6 +181,7 @@ pub fn aroace(small: bool) -> Flag {
 	Flag::Lines(lines)
 }
 
+
 fn demi_orientation_render(middle: Bg<Rgb>, bottom: Bg<Rgb>, width: u16, height: u16) -> Vec<String> {
 	let white	= bg(0xFFFFFF);
 
@@ -238,6 +239,7 @@ pub fn demisexual(small: bool) -> Flag {
 	Flag::Lines(lines)
 }
 
+
 pub fn disability() {
 	let gray	= bg(0x575757);
 
@@ -252,6 +254,7 @@ pub fn disability() {
 	// 2/3 slant stripes with gray background
 	
 }
+
 
 pub fn intersex() -> Flag {
 	let yellow	= bg(0xFFDA00);
@@ -269,6 +272,7 @@ pub fn intersex() -> Flag {
 
 	Flag::Lines(lines)
 }
+
 
 pub fn polyamory(small: bool) -> Flag {
 	let blue	= rgb(0x019FE3);
@@ -289,9 +293,9 @@ pub fn polyamory(small: bool) -> Flag {
 
 	//	constraints
 	let linecount = height - (height % 3);	//	largest multiple of 3 smaller than height
-	let full_depth = width / 3;
+	let full_depth = linecount;
 	let thresh = linecount / 3;				//	stripe & direction thresh
-	let start = width / 6;
+	let start = 2 * full_depth / 3;
 
 	//	piecewise function: ascent -> descent
 	let mut separator = separators[0];
@@ -313,8 +317,7 @@ pub fn polyamory(small: bool) -> Flag {
 		//	advance index at threshold
 		if n == (thresh * 2) { index = 1; }
 
-		let rel = (n - thresh) + 2;
-		let size = full_depth - rel;
+		let size = (2 * start) - n - 1;
 		let color = stripes[index];
 
 		let line = format!(

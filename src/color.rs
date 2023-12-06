@@ -1,3 +1,4 @@
+//!	utility types and functions for color operations
 
 use termion::color::{ Bg, Fg, Rgb, Reset };
 

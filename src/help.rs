@@ -32,6 +32,9 @@ flag list:
    asexual                asexual pride flag
    bigender               bigender pride flag
    bisexual               bisexual pride flag
+   demiboy                demiboy pride flag
+   demigender             demigender pride flag
+   demigirl               demigirl pride flag
    demiromantic           demiromantic pride flag
    demisexual             demisexual pride flag
    gay                    gay men pride flag

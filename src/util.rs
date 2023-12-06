@@ -1,3 +1,4 @@
+//!	utility functions for working with ansi strings
 
 ///	gets the substring of displayed characters of an ANSI formatted string
 pub fn ansi_substr(source: &str, start: usize, end: usize) -> String {

@@ -1,3 +1,5 @@
+//!	main method module
+
 use std::{
 	io::{ stdout, IsTerminal },
 	process::exit
@@ -98,6 +100,14 @@ fn main() {
 		Some("bisexual" | "bi")
 			=>	flag::bisexual(),
 
+
+		Some("demiboy")
+			=>	flag::demiboy(),
+		Some("demigender")
+			=>	flag::demigender(),
+		Some("demigirl")
+			=>	flag::demigirl(),
+
 		Some("demiromantic")
 			=>	complex::demiromantic(small),
 
@@ -136,6 +146,9 @@ fn main() {
 				}
 			}
 
+		Some("multisexual" | "m-spec" | "mspec")
+			=>	flag::multisexual(),
+
 		Some("multigender")
 			=>	flag::multigender(),
 
@@ -148,6 +161,9 @@ fn main() {
 		Some("polyamory" | "polyamorous" | "poly")
 			=>	complex::polyamory(small),
 
+		Some("polysexual")
+			=>	flag::polysexual(),
+
 		Some("transgender" | "trans")
 			=>	flag::transgender(),
 
@@ -155,6 +171,7 @@ fn main() {
 		_ => { help::help_text(); exit(1) }
 	};
 
+	//	draw flag
 	flag.draw(!small);
 
 }
