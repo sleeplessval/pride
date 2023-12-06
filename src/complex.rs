@@ -181,6 +181,7 @@ pub fn aroace(small: bool) -> Flag {
 	Flag::Lines(lines)
 }
 
+
 fn demi_orientation_render(middle: Bg<Rgb>, bottom: Bg<Rgb>, width: u16, height: u16) -> Vec<String> {
 	let white	= bg(0xFFFFFF);
 
@@ -238,6 +239,7 @@ pub fn demisexual(small: bool) -> Flag {
 	Flag::Lines(lines)
 }
 
+
 pub fn disability() {
 	let gray	= bg(0x575757);
 
@@ -252,6 +254,7 @@ pub fn disability() {
 	// 2/3 slant stripes with gray background
 	
 }
+
 
 pub fn intersex() -> Flag {
 	let yellow	= bg(0xFFDA00);
@@ -269,6 +272,7 @@ pub fn intersex() -> Flag {
 
 	Flag::Lines(lines)
 }
+
 
 pub fn polyamory(small: bool) -> Flag {
 	let blue	= rgb(0x019FE3);
