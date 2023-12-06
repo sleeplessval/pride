@@ -72,7 +72,7 @@ pub fn bisexual() -> Flag {
 }
 
 
-fn demigender_base(color: Color) -> Vec<Color> {
+fn demigender_base(color: Color) -> Colors {
 	let grey	= rgb(0x7F7F7F);
 	let gray	= rgb(0xC3C3C3);
 	

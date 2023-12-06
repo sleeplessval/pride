@@ -1,3 +1,5 @@
+//!	render handling code
+
 use std::io::{ self, Write };
 
 use termion::{
@@ -18,6 +20,7 @@ use crate::{
 pub static BLOCK: &str = "█";
 pub static UHALF: &str = "▀";
 
+///	prints a provided vec of lines to stdout
 pub fn draw_lines(lines: Vec<String>, hold: bool) {
 	let mut stdout = io::stdout().into_raw_mode().unwrap();
 
@@ -44,6 +47,7 @@ pub fn draw_lines(lines: Vec<String>, hold: bool) {
 	stdout.flush().ok();
 }
 
+///	generates lines for foreground colors provided as a vec of strings for the draw_lines method
 pub fn fg_stripes(colors: Vec<Fg<Rgb>>, width: u16, height: u16) -> Vec<String> {
 	let width = width as usize;
 	let height = height as usize;
@@ -68,6 +72,7 @@ pub fn fg_stripes(colors: Vec<Fg<Rgb>>, width: u16, height: u16) -> Vec<String> 
 
 	output
 }
+///	generates lines for background colors provided as a vec of strings for the draw_lines method
 pub fn bg_stripes(colors: Vec<Bg<Rgb>>, width: u16, height: u16) -> Vec<String> {
 	let width = width as usize;
 	let height = height as usize;
@@ -92,6 +97,7 @@ pub fn bg_stripes(colors: Vec<Bg<Rgb>>, width: u16, height: u16) -> Vec<String> 
 }
 
 impl Flag {
+	///	renders a flag to stdout
 	pub fn draw(self, hold: bool) {
 		let lines = match self {
 			Flag::Stripes(colors)

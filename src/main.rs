@@ -1,3 +1,5 @@
+//!	main method module
+
 use std::{
 	io::{ stdout, IsTerminal },
 	process::exit
