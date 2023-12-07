@@ -1,5 +1,7 @@
 //!	help and list text
 
+use std::process::exit;
+
 use crate::VERSION;
 
 ///	displays the program's help text
@@ -156,7 +158,11 @@ names:
 
 
 		_
-			=> { help_text(); }
+			=> {
+				println!("pride: no help found for {flag}!\n");
+				help_text();
+				exit(1);
+			}
 	}
 }
 

@@ -158,8 +158,8 @@ fn main() {
 		Some("pansexual" | "pan")
 			=>	flag::pansexual(),
 
-		Some("polyamory" | "polyamorous" | "poly")
-			=>	complex::polyamory(small),
+//		Some("polyamory" | "polyamorous" | "poly")
+//			=>	complex::polyamory(small),
 
 		Some("polysexual")
 			=>	flag::polysexual(),
