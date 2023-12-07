@@ -38,7 +38,7 @@ fn main() {
 	}
 
 	//	handle version flag
-	if args.contains("--version") {
+	if args.contains(["-v", "--version"]) {
 		println!("pride v{VERSION}");
 		return;
 	}
