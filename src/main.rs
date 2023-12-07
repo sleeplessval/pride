@@ -137,7 +137,6 @@ fn main() {
 
 		Some("lesbian")
 			=>	{
-				let variant = args.subcommand().unwrap_or(None);
 				match variant.as_deref() {
 					Some("7-color")
 						=>	variant::lesbian_7(),
