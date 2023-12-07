@@ -1,6 +1,8 @@
+//!	help and list text
 
 use crate::VERSION;
 
+///	displays the program's help text
 pub fn help_text() {
 	println!("pride v{VERSION}
 Valerie Wolfe <sleeplessval@gmail.com>
@@ -22,6 +24,7 @@ Use 'pride --list' to see a list of printable flags
 ~ You're loved and you matter ♥");
 }
 
+///	shows a list of all flags
 pub fn list_text() {
 	println!("pride v{VERSION}
 
@@ -51,6 +54,7 @@ flag list:
    transgender            transgender pride flag");
 }
 
+///	handle help details by flag
 pub fn flag_help(flag: &str) {
 	match flag {
 		"pride" | "rainbow" | "-"
