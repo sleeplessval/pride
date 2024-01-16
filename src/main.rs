@@ -167,7 +167,12 @@ fn main() {
 			=>	flag::transgender(),
 
 
-		_ => { help::help_text(); exit(1) }
+		_
+			=>	{
+				println!("pride: no flag '{}'", subcommand.unwrap());
+				help::help_text();
+				exit(1)
+			}
 	};
 
 	//	draw flag
