@@ -49,8 +49,10 @@ flag list:
    gendervoid             gendervoid pride flag
    lesbian                lesbian pride flag
    multigender            multigender pride flag
+   multisexual            multisexual pride flag
    nonbinary              nonbinary pride flag
    pansexual              pansexual pride flag
+   polysexual             polysexual pride flag
    rainbow                six-color rainbow flag
    progress               progress arrow rainbow flag
    transgender            transgender pride flag");

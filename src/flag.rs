@@ -158,7 +158,7 @@ pub fn multigender() -> Flag {
 
 pub fn multisexual() -> Flag {
 	let purple	= rgb(0x724DC9);
-	let blue	= rgb(0xFF3D9B);
+	let blue	= rgb(0xA0EFFE);
 	let pink	= rgb(0xFF3D9B);
 
 	Flag::Stripes(vec![purple, WHITE, blue, pink])
