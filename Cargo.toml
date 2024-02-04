@@ -2,6 +2,11 @@
 name = "pride"
 version = "0.3.0"
 edition = "2021"
+authors = [ "Valerie Wolfe <sleeplessval@gmail.com>" ]
+description = "Pride flags in the terminal."
+homepage = "https://git.vwolfe.io/valerie/pride"
+repository = "https://git.vwolfe.io/valerie/pride"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
