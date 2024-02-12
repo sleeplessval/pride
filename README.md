@@ -22,6 +22,10 @@ to a directory in `$PATH`, such as `/usr/bin/`.
 Compile using cargo with the command `cargo build --release` and copy the file
 from `target/release/` to a directory in `$PATH`, such as `/usr/bin/`.
 
+### Cargo
+
+Install the package from cargo using `cargo install pride-term`.
+
 ### Arch Linux (AUR)
 
 Install the package from the [`pride` AUR Package](https://aur.archlinux.org/packages/pride),
