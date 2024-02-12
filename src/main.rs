@@ -78,6 +78,9 @@ fn main() {
 		Some("agender")
 			=>	flag::agender(),
 
+		Some("androgyne")
+			=>	complex::androgyne(small),
+
 		Some("aromantic" | "aro")
 			=>	flag::aromantic(),
 

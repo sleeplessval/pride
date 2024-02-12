@@ -151,6 +151,18 @@ pub fn progress(small: bool) -> Flag {
 
 //	everything below this point is in alphabetical order
 
+
+pub fn androgyne(small: bool) -> Flag {
+	let magenta	= rgb(0xFE007F);
+	let purple	= rgb(0x9832FF);
+	let cyan	= rgb(0x00B8E7);
+
+	let (width, height) = if small { (15, 5) } else { terminal_size().unwrap() };
+
+	let lines = draw::fg_vstripes(vec![magenta, purple, cyan], width, height);
+	Flag::Lines(lines)
+}
+
 pub fn aroace(small: bool) -> Flag {
 	//	pull colors from aro & ace stripe flags
 	let Flag::Stripes(aro) = flag::aromantic() else { panic!() };

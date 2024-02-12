@@ -13,7 +13,10 @@ use termion::{
 };
 
 use crate::{
-	color::{ RESET, RESET_BG },
+	color::{
+		RESET, RESET_BG,
+		Colors
+	},
 	flag::Flag
 };
 
@@ -48,7 +51,7 @@ pub fn draw_lines(lines: Vec<String>, hold: bool) {
 }
 
 ///	generates lines for foreground colors provided as a vec of strings for the draw_lines method
-pub fn fg_stripes(colors: Vec<Fg<Rgb>>, width: u16, height: u16) -> Vec<String> {
+pub fn fg_stripes(colors: Colors, width: u16, height: u16) -> Vec<String> {
 	let width = width as usize;
 	let height = height as usize;
 	let count = colors.len();
@@ -91,6 +94,28 @@ pub fn bg_stripes(colors: Vec<Bg<Rgb>>, width: u16, height: u16) -> Vec<String> 
 		}
 		let color = colors[index];
 		output.push(format!("{color}{stripe}"));
+	}
+
+	output
+}
+
+pub fn fg_vstripes(colors: Colors, width: u16, height: u16) -> Vec<String> {
+	let width = width as usize;
+	let height = height as usize;
+	let count = colors.len();
+
+	let thresh = width / count;
+	let mut output = Vec::new();
+
+	let section = BLOCK.repeat(thresh);
+	let mut line = "".to_owned();
+	for i in 0..count {
+		let color = colors[i];
+		line += &format!("{color}{section}");
+	}
+
+	for _ in 0..height {
+		output.push(line.to_string());
 	}
 
 	output
