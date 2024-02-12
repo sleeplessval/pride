@@ -50,6 +50,7 @@ flag list:
    lesbian                lesbian pride flag
    multigender            multigender pride flag
    multisexual            multisexual pride flag
+   neutrois               neutrois pride flag
    nonbinary              nonbinary pride flag
    pansexual              pansexual pride flag
    polysexual             polysexual pride flag

@@ -117,6 +117,7 @@ fn main() {
 //		Some("disability")
 //			=>	complex::disability();
 
+
 		Some("gay" | "mlm")
 			=>	flag::gay(),
 
@@ -132,8 +133,10 @@ fn main() {
 		Some("gendervoid")
 			=>	flag::gendervoid(),
 
+
 //		Some("intersex")
 //			=>	complex::intersex(),
+
 
 		Some("lesbian")
 			=>	{
@@ -145,14 +148,20 @@ fn main() {
 				}
 			}
 
+
 		Some("multisexual" | "m-spec" | "mspec")
 			=>	flag::multisexual(),
 
 		Some("multigender")
 			=>	flag::multigender(),
 
+
+		Some("neutrois")
+			=>	flag::neutrois(),
+
 		Some("nonbinary" | "nb")
 			=>	flag::nonbinary(),
+
 
 		Some("pansexual" | "pan")
 			=>	flag::pansexual(),
@@ -162,6 +171,7 @@ fn main() {
 
 		Some("polysexual")
 			=>	flag::polysexual(),
+
 
 		Some("transgender" | "trans")
 			=>	flag::transgender(),

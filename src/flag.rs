@@ -165,6 +165,12 @@ pub fn multisexual() -> Flag {
 }
 
 
+pub fn neutrois() -> Flag {
+	let green	= rgb(0x2D9A1B);
+
+	Flag::Stripes(vec![WHITE, green, BLACK])
+}
+
 pub fn nonbinary() -> Flag {
 	let yellow	= rgb(0xFFF433);
 	let purple	= rgb(0x9B59D0);
