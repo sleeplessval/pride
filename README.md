@@ -15,7 +15,7 @@ slant symbols, and therefore require use of a Powerline font, such as [Fira Code
 ### Manual Install
 
 <details>
-<summary>From Binary</summary>
+<summary>Release Binary</summary>
 Copy the compiled binary from the <a href="https://git.vwolfe.io/valerie/pride/releases/">releases page</a>
 to a directory in <code>$PATH</code>, such as <code>/usr/bin/</code>.
 </details>
@@ -30,7 +30,7 @@ copy the file from <code>target/release/</code> to a directory in
 <details>
 <summary>makepkg (AUR)</summary>
 Clone the <a href="https://aur.archlinux.org/pride.git">AUR Repository</a> and
-run the command <code>makepkg --install</code>
+run the command <code>makepkg --install</code>.
 </details>
 
 ### Package Managers
@@ -38,7 +38,7 @@ run the command <code>makepkg --install</code>
 <details>
 <summary>Arch Linux (AUR): <code>pride</code></summary>
 Install the package from the <a href="https://aur.archlinux.org/packages/pride"><code>pride</code> AUR Package</a>
-using an AUR package manager such as <a href="https://github.com/Morganamilo/paru"><code>paru</code></a>
+using an AUR package manager such as <a href="https://github.com/Morganamilo/paru"><code>paru</code></a>.
 </details>
 
 <details>
