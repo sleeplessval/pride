@@ -7,8 +7,12 @@ description = "Pride flags in the terminal."
 homepage = "https://git.vwolfe.io/valerie/pride"
 repository = "https://git.vwolfe.io/valerie/pride"
 license = "MIT"
+categories = [ "command-line-utilities" ]
+keywords = [ "lgbt", "pride", "cli" ]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[package.metadata.aur]
+name = "pride"
+source = "archive/v$pkgver.tar.gz"
 
 [[bin]]
 name = "pride"
