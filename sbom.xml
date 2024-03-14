@@ -1,0 +1,239 @@
+{
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "creationInfo": {
+    "created": "2024-03-14T21:10:21.186Z",
+    "creators": [
+      "Tool: cargo-sbom-v0.8.4"
+    ]
+  },
+  "dataLicense": "CC0-1.0",
+  "documentNamespace": "https://spdx.org/spdxdocs/pride-4bb3085e-02b0-4995-aab3-241ff2d827ee",
+  "files": [
+    {
+      "SPDXID": "SPDXRef-File-pride",
+      "checksums": [],
+      "fileName": "pride",
+      "fileTypes": [
+        "BINARY"
+      ]
+    }
+  ],
+  "name": "pride",
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-numtoa-0.1.0",
+      "description": "Convert numbers into stack-allocated byte arrays",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/numtoa@0.1.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "numtoa",
+      "versionInfo": "0.1.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-termion-2.0.3",
+      "description": "A bindless library for manipulating terminals.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/termion@2.0.3",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "termion",
+      "versionInfo": "2.0.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-pico-args-0.5.0",
+      "description": "An ultra simple CLI arguments parser.",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/pico-args@0.5.0",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "pico-args",
+      "versionInfo": "0.5.0"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-libc-0.2.151",
+      "description": "Raw FFI bindings to platform libraries like libc.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/libc@0.2.151",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/rust-lang/libc",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "libc",
+      "versionInfo": "0.2.151"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-bitflags-2.4.1",
+      "description": "A macro to generate structures which behave like bitflags.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/bitflags@2.4.1",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/bitflags/bitflags",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT OR Apache-2.0",
+      "name": "bitflags",
+      "versionInfo": "2.4.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-redox_syscall-0.4.1",
+      "description": "A Rust library to access raw Redox system calls",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/redox_syscall@0.4.1",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "redox_syscall",
+      "versionInfo": "0.4.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-bitflags-1.3.2",
+      "description": "A macro to generate structures which behave like bitflags.\n",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/bitflags@1.3.2",
+          "referenceType": "purl"
+        }
+      ],
+      "homepage": "https://github.com/bitflags/bitflags",
+      "licenseConcluded": "MIT OR Apache-2.0",
+      "licenseDeclared": "MIT/Apache-2.0",
+      "name": "bitflags",
+      "versionInfo": "1.3.2"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-pride-0.3.1",
+      "description": "Pride flags in the terminal.",
+      "downloadLocation": "NONE",
+      "homepage": "https://git.vwolfe.io/valerie/pride",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "pride",
+      "versionInfo": "0.3.1"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-redox_termios-0.1.3",
+      "description": "A Rust library to access Redox termios functions",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/redox_termios@0.1.3",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "redox_termios",
+      "versionInfo": "0.1.3"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-libredox-0.0.2",
+      "description": "Redox stable ABI",
+      "downloadLocation": "registry+https://github.com/rust-lang/crates.io-index",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:cargo/libredox@0.0.2",
+          "referenceType": "purl"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "name": "libredox",
+      "versionInfo": "0.0.2"
+    }
+  ],
+  "relationships": [
+    {
+      "relatedSpdxElement": "SPDXRef-Package-libc-0.2.151",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-termion-2.0.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-libc-0.2.151",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-libredox-0.0.2"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-bitflags-2.4.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-libredox-0.0.2"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-pride-0.3.1",
+      "relationshipType": "GENERATED_FROM",
+      "spdxElementId": "SPDXRef-File-pride"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-bitflags-1.3.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-redox_syscall-0.4.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-pico-args-0.5.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-pride-0.3.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-redox_termios-0.1.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-termion-2.0.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-numtoa-0.1.0",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-termion-2.0.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-termion-2.0.3",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-pride-0.3.1"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-libredox-0.0.2",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-termion-2.0.3"
+    },
+    {
+      "relatedSpdxElement": "SPDXRef-Package-redox_syscall-0.4.1",
+      "relationshipType": "DEPENDS_ON",
+      "spdxElementId": "SPDXRef-Package-libredox-0.0.2"
+    }
+  ],
+  "spdxVersion": "SPDX-2.3"
+}
