@@ -1,0 +1,91 @@
+.Dd $Mdocdate$
+.Dt PRIDE 6
+.Os
+.Sh NAME
+.Nm pride
+.Nd shows pride flags in the terminal
+.Sh SYNOPSIS
+.Nm
+.Op Fl hlvs
+.Op Ar flag
+.Sh DESCRIPTION
+.Nm
+displays pride flags in the terminal using ANSI truecolor sequences.
+.Ss OPTIONS
+.Bl -tag -width Ds
+.It Fl h , Fl -help
+Shows a brief help text.
+.It Fl l , Fl -list
+Shows a list of available pride flags.
+.It Fl v , Fl -version
+Shows version information.
+.It Ar flag
+The name of the flag to display. Defaults to 'rainbow'.
+.El
+.Sh FLAGS
+.Bl -tag -width Ds
+.It Ic agender
+.It Ic aromantic, aro
+.It Ic aroace, aromantic-asexual
+The aromantic-asexual pride flag by @aroaesflags@tumblr.com.
+.Pp
+VARIANTS
+.Bl -tag -width Ds -compact
+.It Ic halves, side-by-side, sbs
+.El
+.It Ic bigender
+.It Ic bisexual, bi
+The bisexual pride flag designed by Michael Page in 1998.
+.It Ic demiboy
+.It Ic demigender
+.It Ic demigirl
+.It Ic demiromantic
+.It Ic demisexual
+.It Ic gay, mlm
+The gay men pride flag designed by @gayflagblog@tumblr.com in 2019.
+.It Ic genderfluid
+.It Ic gender-nonconforming, gendernonconforming, gnc
+.It Ic genderqueer
+.It Ic gendervoid
+.It Ic lesbian
+The 5-stripe lesbian pride flag designed by Emily Gwen in 2018.
+.Pp
+VARIANTS
+.Bl -tag -width Ds -compact
+.It Ic 7-color
+The 7-stripe lesbian pride flag designed by Emily Gwen in 2018.
+.El
+.It Ic multisexual, m-spec, mspec
+.It Ic multigender
+.It Ic neutrois
+.It Ic nonbinary, nb
+The nonbinary pride flag designed by Kyle Rowan in 2014.
+.It Ic pansexual, pan
+The pansexual pride flag designed by Jasper V circa 2010.
+.It Ic polysexual
+.It Ic progress
+The progress rainbow pride flag designed by Daniel Quasar in 2018.
+.It Ic rainbow, pride
+The 1979 6-stripe revision of Gilbert Baker's rainbow pride flag.
+.Pp
+VARIANTS
+.Bl -tag -width Ds -compact
+.It Ic 8-color, gilbert-baker, sex-and-magic
+Gilbert Baker's original 8-stripe rainbow pride flag from 1978.
+.It Ic philadelphia
+The rainbow flag designed for 2017 Philadelphia Pride.
+.It Ic progress
+.El
+.It Ic transgender, trans
+The transgender pride flag designed by Monica Helms in 1999.
+.El
+.Sh EXIT STATUS
+.Bl -tag -width Ds
+.It 1
+Unmatched flag name.
+.It 2
+Not running in a terminal.
+.El
+.Sh AUTHORS
+.An -nosplit
+.An Valerie Wolfe Aq Mt sleeplessval@gmail.com
