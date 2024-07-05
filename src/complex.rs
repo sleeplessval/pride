@@ -58,7 +58,7 @@ pub fn progress(state: &State) -> Flag {
 	//	set up constraints
 	let linecount = height - (height % 6);	//	largest multiple of 6 smaller than height
 	let full_depth = width / 3;
-	let chevron_width = (full_depth / 6) - 1;
+	let chevron_width = if full_depth > 6 { (full_depth / 6) - 1 } else { 0 };
 	let direction_thresh = linecount / 2;
 	let corner = linecount % 2 == 1;
 	
@@ -99,17 +99,14 @@ pub fn progress(state: &State) -> Flag {
 
 		//	grab our substring constraints
 		let start = (direction_thresh - n) as usize - 1;
-		let diff = display_length - start;
+		let diff = if display_length >= start { display_length - start } else { 0 };
 
 		//	take substring of chevron line...
 		let mut line = ansi_substr(&base, start as usize, base_length);
+		line += &stripes[index].to_string();
+		if diff > 0 { line.push(TRIANGLE_21[0]); }
 		//	... and add the colored stripe
-		line += &format!(
-			"{stripe}{separator}{line}",
-			stripe = stripes[index],
-			separator = TRIANGLE_21[0],
-			line = " ".repeat(width as usize - diff)
-		);
+		line += &" ".repeat(width as usize - diff);
 
 		lines.push(line);
 		line_no += 1;
@@ -135,15 +132,12 @@ pub fn progress(state: &State) -> Flag {
 		if index > 5 { break; }
 
 		let start = n as usize;
-		let diff = display_length - start;
+		let diff = if display_length >= start { display_length - start } else { 0 };
 
 		let mut line = ansi_substr(&base, start, base_length);
-		line += &format!(
-			"{stripe}{separator}{line}",
-			stripe = stripes[index],
-			separator = TRIANGLE_21[2],
-			line = " ".repeat(width as usize - diff)
-		);
+		line += &stripes[index].to_string();
+		if diff > 0 { line.push(TRIANGLE_21[2]); }
+		line += &" ".repeat(width as usize - diff);
 
 		lines.push(line);
 		line_no += 1;

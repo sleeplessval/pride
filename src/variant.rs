@@ -27,7 +27,7 @@ pub fn philadelphia() -> Flag {
 		Flag::Stripes(inner)
 			=>	inner,
 		_
-			=>	{ panic!("impossible enum variant"); }
+			=>	panic!("impossible enum variant")
 	};
 	colors.insert(0, BLACK);
 	colors.insert(1, brown);

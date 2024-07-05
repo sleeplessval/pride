@@ -60,10 +60,7 @@ pub fn draw_full(lines: Vec<String>) {
 pub fn draw_lines(lines: Vec<String>, state: &State) {
 	match state.size {
 		Size::Full => draw_full(lines),
-		_ => {
-			for line in lines { println!("{line}"); }
-			println!("{RESET}{RESET_BG}");
-		}
+		_ => for line in lines { println!("{line}{RESET}{RESET_BG}") }
 	}
 }
 
