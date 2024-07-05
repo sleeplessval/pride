@@ -43,8 +43,6 @@ impl Size {
 pub struct State {
 	pub size: Size,
 	pub is_terminal: bool,
-	pub flag: Option<String>,
-	pub variant: Option<String>
 }
 
 impl State {
@@ -58,10 +56,7 @@ impl State {
 			_								=>	{ error::size_missing(); panic!() }
 		};
 
-		let flag = args.subcommand().unwrap();
-		let variant = args.subcommand().unwrap();
-
-		State { size, is_terminal, flag, variant }
+		State { size, is_terminal }
 	}
 }
 

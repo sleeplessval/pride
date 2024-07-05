@@ -26,31 +26,45 @@ pub static BLOCK: &str = "█";
 pub static UHALF: &str = "▀";
 
 ///	prints a provided vec of lines to stdout
-pub fn draw_lines(lines: Vec<String>, state: &State) {
+pub fn draw_full(lines: Vec<String>) {
 	let mut stdout = io::stdout().into_raw_mode().unwrap();
 
+	//	get in position for draw
 	let count = lines.len() as u16;
 	for _ in 0..count { write!(stdout, "\n").ok(); }
 	write!(stdout, "{}", cursor::Up(count)).ok();
 
-	let hold = state.size == Size::Full;
-	if hold { write!(stdout, "{}{}", cursor::Hide, clear::All).ok(); }
+	//	clear screen and hide cursor
+	write!(stdout, "{}{}", cursor::Hide, clear::All).ok();
 
+	//	write lines
 	let down = cursor::Down(1);
 	for line in lines {
 		let left = cursor::Left(line.len() as u16);
 		write!(stdout, "{line}{left}{down}").ok();
 	}
 
+	//	clear formatting and flush buffer
 	write!(stdout, "{RESET}{RESET_BG}").ok();
 	stdout.flush().ok();
-	if hold {
-		let stdin = io::stdin();
-		for _ in stdin.keys() { break; }
-		write!(stdout, "{}", clear::All).ok();
-	}
-	write!(stdout, "{}", cursor::Show).ok();
+
+	//	hold for input
+	let stdin = io::stdin();
+	for _ in stdin.keys() { break; }
+
+	//	clear and show cursor
+	write!(stdout, "{}{}", clear::All, cursor::Show).ok();
 	stdout.flush().ok();
+}
+
+pub fn draw_lines(lines: Vec<String>, state: &State) {
+	match state.size {
+		Size::Full => draw_full(lines),
+		_ => {
+			for line in lines { println!("{line}"); }
+			println!("{RESET}{RESET_BG}");
+		}
+	}
 }
 
 ///	generates lines for foreground colors provided as a vec of strings for the draw_lines method
