@@ -137,7 +137,7 @@ fn main() {
 //			=>	complex::intersex(),
 
 
-		Some("lesbian")
+		Some("lesbian" | "wlw")
 			=>	{
 				match variant.as_deref() {
 					Some("7-color")

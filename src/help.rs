@@ -135,7 +135,7 @@ names:
 				println!("The 5-stripe lesbian flag designed by Emily Gwen in 2018.
 
 names:
-   'lesbian'
+   'lesbian', 'wlw'
 
 variants:
    7-color            7-stripe flag, also designed in 2018 by Emily Gwen");
