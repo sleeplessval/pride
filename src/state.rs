@@ -50,10 +50,14 @@ impl State {
 		let is_terminal = stdout().is_terminal();
 
 		let size = match args.value_from_str::<[&str;2], String>(FLAG_SIZE).as_deref() {
-			Ok(value)						=>	Size::from(value),
-			Err(Error::MissingOption(_)) |
-			Err(Error::MissingArgument)		=>	if is_terminal { Size::Full } else { Size::Small },
-			_								=>	{ error::size_missing(); panic!() }
+			Ok(value)							=>	Size::from(value),
+
+			Err(Error::MissingOption(_))		|
+			Err(Error::MissingArgument)			=>	if is_terminal { Size::Full } else { Size::Small },
+
+			Err(Error::OptionWithoutAValue(_))	=>	Size::Small,
+
+			_									=>	{ error::size_missing(); panic!() }
 		};
 
 		State { size, is_terminal }

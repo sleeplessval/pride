@@ -19,7 +19,7 @@ flags:
    -h, --help           Shows this help text
    --version            Show version information
    -l, --list           Prints a list of printable flags
-   -s, --size <size>    Sets the size of the output flag.
+   -s, --size [size]    Sets the size of the output flag.
 
 Use 'pride --list' to see a list of printable flags
 
