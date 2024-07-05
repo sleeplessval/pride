@@ -13,13 +13,13 @@ Display pride flags in the terminal.
 usage: pride [flags] [name]
 
 args:
-   <name>         The pride flag to display
+   <name>               The pride flag to display
 
 flags:
-   -h, --help     Shows this help text
-   --version      Show version information
-   -l, --list     Prints a list of printable flags
-   -s, --small    Prints a small version without holding
+   -h, --help           Shows this help text
+   --version            Show version information
+   -l, --list           Prints a list of printable flags
+   -s, --size <size>    Sets the size of the output flag.
 
 Use 'pride --list' to see a list of printable flags
 
