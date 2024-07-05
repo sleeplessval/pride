@@ -45,7 +45,7 @@ pub fn progress(state: &State) -> Flag {
 	let white:	u32 = 0xFFFFFF;
 
 	let (width, height) = state.size.get(18, 6);
-	if height < 6 { error::too_small(width, height); }
+	if height < 6 || width < 6 { error::too_small(width, height); }
 
 	//	create color slices and line buffer
 	let stripes = [red, orange, yellow, green, blue, purple];
