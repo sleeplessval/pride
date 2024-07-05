@@ -1,6 +1,9 @@
 //!	render handling code
 
-use std::io::{ self, Write };
+use std::io::{
+	self,
+	Write
+};
 
 use termion::{
 	terminal_size,
@@ -9,25 +12,28 @@ use termion::{
 	color::{ Bg, Fg, Rgb },
 	cursor,
 	input::TermRead,
-	raw::IntoRawMode
+	raw::{ RawTerminal, IntoRawMode }
 };
 
 use crate::{
 	color::{ RESET, RESET_BG },
-	flag::Flag
+	error,
+	flag::Flag,
+	state::{ Size, State }
 };
 
 pub static BLOCK: &str = "█";
 pub static UHALF: &str = "▀";
 
 ///	prints a provided vec of lines to stdout
-pub fn draw_lines(lines: Vec<String>, hold: bool) {
+pub fn draw_lines(lines: Vec<String>, state: &State) {
 	let mut stdout = io::stdout().into_raw_mode().unwrap();
 
 	let count = lines.len() as u16;
 	for _ in 0..count { write!(stdout, "\n").ok(); }
 	write!(stdout, "{}", cursor::Up(count)).ok();
 
+	let hold = state.size == Size::Full;
 	if hold { write!(stdout, "{}{}", cursor::Hide, clear::All).ok(); }
 
 	let down = cursor::Down(1);
@@ -98,22 +104,19 @@ pub fn bg_stripes(colors: Vec<Bg<Rgb>>, width: u16, height: u16) -> Vec<String> 
 
 impl Flag {
 	///	renders a flag to stdout
-	pub fn draw(self, hold: bool) {
+	pub fn draw(self, state: &State) {
 		let lines = match self {
 			Flag::Stripes(colors)
 				=> {
-					let (width, height);
-					if hold { (width, height) = terminal_size().unwrap(); }
-					else {
-						height = colors.len() as u16;
-						width = height * 3;
-					}
+					let count = colors.len() as u16;
+					let (width, height) = state.size.get(count * 3, count);
+					if height < count { error::too_small(width, height); }
 					fg_stripes(colors, width, height)
 				},
 			Flag::Lines(lines)
 				=>	lines
 		};
-		draw_lines(lines, hold);
+		draw_lines(lines, &state);
 	}
 }
 

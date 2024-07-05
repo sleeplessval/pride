@@ -6,7 +6,8 @@
 .Nd shows pride flags in the terminal
 .Sh SYNOPSIS
 .Nm
-.Op Fl hlvs
+.Op Fl hlv
+.Op Fl s Ar size
 .Op Ar flag
 .Sh DESCRIPTION
 .Nm
@@ -17,6 +18,8 @@ displays pride flags in the terminal using ANSI truecolor sequences.
 Shows a brief help text.
 .It Fl l , Fl -list
 Shows a list of available pride flags.
+.It Fl s , Fl -size Ar size
+Scales the flag to the given size: 'small' will produce the minimum size; one number sets the width; and two numbers separated by 'x' sets width and height respectively.
 .It Fl v , Fl -version
 Shows version information.
 .It Ar flag
@@ -82,10 +85,22 @@ The transgender pride flag designed by Monica Helms in 1999.
 .Sh EXIT STATUS
 .Bl -tag -width Ds
 .It 1
-Unmatched flag name.
+Unmatched
+.Ar flag
+name.
 .It 2
-Not running in a terminal.
+Failed to parse
+.Ar size .
+.It 3
+The provided
+.Ar size
+is too small to render.
 .El
+.Sh EXAMPLES
+Create a full-width banner flag using tput:
+.Pp
+.Dl $ pride -s `tput cols`
+.Pp
 .Sh AUTHORS
 .An -nosplit
 .An Valerie Wolfe Aq Mt sleeplessval@gmail.com

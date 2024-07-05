@@ -1,30 +1,35 @@
 //!	main method module
 
-use std::{
-	io::{ stdout, IsTerminal },
-	process::exit
-};
-
 use pico_args::Arguments;
 
 mod color;
 mod complex;
 mod draw;
+mod error;
 mod flag;
 mod help;
+mod state;
 mod util;
 mod variant;
 
-use crate::flag::Flag;
+use crate::{
+	flag::Flag,
+	state::State
+};
 
 static VERSION: &str = env!("CARGO_PKG_VERSION");
+
+pub const FLAG_HELP:	[&str;2]	= [ "-h", "--help" ];
+pub const FLAG_LIST:	[&str;2]	= [ "-l", "--list" ];
+pub const FLAG_SIZE:	[&str;2]	= [ "-s", "--size"];
+pub const FLAG_VERSION:	[&str;2]	= [ "-v", "--version" ];
 
 fn main() {
 	//	collect args
 	let mut args = Arguments::from_env();
 
 	//	handle help flag
-	if args.contains(["-h", "--help"]) {
+	if args.contains(FLAG_HELP) {
 		let target = args.subcommand().unwrap();
 		if target.is_some() { help::flag_help(&target.unwrap()); }
 		else { help::help_text(); }
@@ -32,27 +37,21 @@ fn main() {
 	}
 
 	//	handle list flag
-	if args.contains(["-l", "--list"]) {
+	if args.contains(FLAG_LIST) {
 		help::list_text();
 		return;
 	}
 
 	//	handle version flag
-	if args.contains(["-v", "--version"]) {
+	if args.contains(FLAG_VERSION) {
 		println!("pride v{VERSION}");
 		return;
 	}
 
-	if !stdout().is_terminal() {
-		println!("pride: output must be a terminal");
-		exit(2);
-	}
+	let state = State::new(&mut args);
 
-	//	get small flag
-	let small = args.contains(["-s", "--small"]);
-
-	let subcommand	= args.subcommand().unwrap();
-	let variant		= args.subcommand().unwrap_or(None);
+	let subcommand = args.subcommand().unwrap();
+	let variant = args.subcommand().unwrap();
 
 	//	get color vec from matched flag
 	let flag: Flag = match subcommand.as_deref() {
@@ -65,14 +64,14 @@ fn main() {
 					Some("philadelphia")
 						=>	variant::philadelphia(),
 					Some("progress")
-						=>	complex::progress(small),
+						=>	complex::progress(&state),
 					_
 						=>	flag::pride()
 				}
 			},
 
 		Some("progress")
-			=>	complex::progress(small),
+			=>	complex::progress(&state),
 
 
 		Some("agender")
@@ -88,7 +87,7 @@ fn main() {
 			=>	{
 				match variant.as_deref() {
 					Some("halves" | "side-by-side" | "sbs")
-						=>	complex::aroace(small),
+						=>	complex::aroace_halves(&state),
 					_
 						=>	flag::aroace()
 				}
@@ -109,10 +108,10 @@ fn main() {
 			=>	flag::demigirl(),
 
 		Some("demiromantic")
-			=>	complex::demiromantic(small),
+			=>	complex::demiromantic(&state),
 
 		Some("demisexual")
-			=>	complex::demisexual(small),
+			=>	complex::demisexual(&state),
 
 //		Some("disability")
 //			=>	complex::disability();
@@ -178,15 +177,11 @@ fn main() {
 
 
 		_
-			=>	{
-				println!("pride: no flag '{}'", subcommand.unwrap());
-				help::help_text();
-				exit(1)
-			}
+			=>	{ error::unmatched_flag(subcommand.unwrap()); panic!() }
 	};
 
 	//	draw flag
-	flag.draw(!small);
+	flag.draw(&state);
 
 }
 

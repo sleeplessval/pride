@@ -9,7 +9,9 @@ use termion::{
 use crate::{
 	color::*,
 	draw,
+	error,
 	flag::{ self, Flag },
+	state::State,
 	util::{ ansi_len, ansi_substr }
 };
 
@@ -27,7 +29,7 @@ pub static TRIANGLE_21: [char; 3] = ['', '🭬', ''];
 ///	2/3 slope slant
 pub static SLANT_23: [char; 2] = ['🭒', '🭏'];
 
-pub fn progress(small: bool) -> Flag {
+pub fn progress(state: &State) -> Flag {
 	let red		= bg(0xE50000);
 	let orange	= bg(0xFF8D00);
 	let yellow	= bg(0xFFEE00);
@@ -42,7 +44,8 @@ pub fn progress(small: bool) -> Flag {
 	let pink:	u32 = 0x7ACBF5;
 	let white:	u32 = 0xFFFFFF;
 
-	let (width, height) = if small { (18, 6) } else { terminal_size().unwrap() };
+	let (width, height) = state.size.get(18, 6);
+	if height < 6 { error::too_small(width, height); }
 
 	//	create color slices and line buffer
 	let stripes = [red, orange, yellow, green, blue, purple];
@@ -151,12 +154,13 @@ pub fn progress(small: bool) -> Flag {
 
 //	everything below this point is in alphabetical order
 
-pub fn aroace(small: bool) -> Flag {
+pub fn aroace_halves(state: &State) -> Flag {
 	//	pull colors from aro & ace stripe flags
 	let Flag::Stripes(aro) = flag::aromantic() else { panic!() };
 	let Flag::Stripes(ace) = flag::asexual() else { panic!() };
 
-	let (width, height) = if small { (60, 20) } else { terminal_size().unwrap() };
+	let (width, height) = state.size.get(60, 20);
+	if height < 20 { error::too_small(width, height); }
 
 	let mut lines: Vec<String> = Vec::new();
 
@@ -184,6 +188,8 @@ pub fn aroace(small: bool) -> Flag {
 
 fn demi_orientation_render(middle: Bg<Rgb>, bottom: Bg<Rgb>, width: u16, height: u16) -> Vec<String> {
 	let white	= bg(0xFFFFFF);
+
+	if height < 5 { error::too_small(width, height); }
 
 	let stripes = vec![white, white, middle, bottom, bottom];
 
@@ -219,21 +225,21 @@ fn demi_orientation_render(middle: Bg<Rgb>, bottom: Bg<Rgb>, width: u16, height:
 	lines
 }
 
-pub fn demiromantic(small: bool) -> Flag {
+pub fn demiromantic(state: &State) -> Flag {
 	let green	= bg(0x3DA542);
 	let gray	= bg(0xD2D2D2);
 
-	let (width, height) = if small { (15, 5) } else { terminal_size().unwrap() };
+	let (width, height) = state.size.get(15, 5);
 	let lines = demi_orientation_render(green, gray, width, height);
 
 	Flag::Lines(lines)
 }
 
-pub fn demisexual(small: bool) -> Flag {
+pub fn demisexual(state: &State) -> Flag {
 	let purple	= bg(0x832FA8);
 	let grey	= bg(0x7B868C);
 
-	let (width, height) = if small { (15, 5) } else { terminal_size().unwrap() };
+	let (width, height) = state.size.get(15, 5);
 	let lines = demi_orientation_render(purple, grey, width, height);
 
 	Flag::Lines(lines)
@@ -274,7 +280,7 @@ pub fn intersex() -> Flag {
 }
 
 
-pub fn polyamory(small: bool) -> Flag {
+pub fn polyamory(state: &State) -> Flag {
 	let blue	= rgb(0x019FE3);
 	let magenta	= rgb(0xE50051);
 	let purple	= rgb(0x340C46);
@@ -285,7 +291,8 @@ pub fn polyamory(small: bool) -> Flag {
 	let semicircle = '\u{E0B6}';
 	let separators = ['\u{E0BE}', '\u{E0BA}'];
 
-	let (width, height) = if small { (18, 6) } else { terminal_size().unwrap() };
+	let (width, height) = state.size.get(18, 6);
+	if height < 6 { error::too_small(width, height); }
 
 	//	create stripe array and line buffer
 	let stripes = [magenta, purple];		//	only stripes 2 and 3 need tracked
