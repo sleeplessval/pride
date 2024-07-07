@@ -1,10 +1,6 @@
 //!	flags that require more complex rendering than just scaling colored stripes
 
-use termion::{
-	terminal_size,
-
-	color::{ Bg, Rgb }
-};
+use termion::color::{ Bg, Rgb };
 
 use crate::{
 	color::*,

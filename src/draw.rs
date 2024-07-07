@@ -6,13 +6,11 @@ use std::io::{
 };
 
 use termion::{
-	terminal_size,
-
 	clear,
 	color::{ Bg, Fg, Rgb },
 	cursor,
 	input::TermRead,
-	raw::{ RawTerminal, IntoRawMode }
+	raw::IntoRawMode
 };
 
 use crate::{
