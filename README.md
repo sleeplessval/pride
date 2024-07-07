@@ -46,6 +46,13 @@ using an AUR package manager such as <a href="https://github.com/Morganamilo/par
 Install the package using Cargo with the command <code>cargo install pride-term</code>.
 </details>
 
+### Man Page
+
+<details>
+<summary>Section 6</summary>
+Copy <code>man/pride.6</code> into <code>/usr/share/man/man6/</code>.
+</details>
+
 ## Libraries
 
 - [pico-args](https://crates.io/crates/pico-args) — argument parsing
