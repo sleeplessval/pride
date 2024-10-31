@@ -1,6 +1,6 @@
 [package]
 name = "pride"
-version = "0.4.1"
+version = "0.4.2"
 edition = "2021"
 authors = [ "Valerie Wolfe <sleeplessval@gmail.com>" ]
 description = "Pride flags in the terminal."
