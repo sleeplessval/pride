@@ -118,7 +118,7 @@ impl Flag {
 			Flag::Stripes(colors)
 				=> {
 					let count = colors.len() as u16;
-					let (width, height) = state.size.get(count * 3, count);
+					let (width, height) = state.size.get((count * 20 + 3) / 6, count);
 					if height < count { error::too_small(width, height); }
 					fg_stripes(colors, width, height)
 				},
