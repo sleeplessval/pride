@@ -130,7 +130,7 @@ names:
 			=> { println!("The gender-nonconforming pride flag.\n\nnames:\n   'gender-nonconforming', 'gendernonconforming', 'gnc'"); },
 
 
-		"lesbian"
+		"lesbian" | "wlw"
 			=> {
 				println!("The 5-stripe lesbian flag designed by Emily Gwen in 2018.
 
@@ -138,7 +138,9 @@ names:
    'lesbian', 'wlw'
 
 variants:
-   7-color            7-stripe flag, also designed in 2018 by Emily Gwen");
+   7                  7-stripe flag, also designed in 2018 by Emily Gwen
+   7-color
+   7-stripe");
 			},
 
 

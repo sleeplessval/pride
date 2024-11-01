@@ -140,7 +140,7 @@ fn main() {
 		Some("lesbian" | "wlw")
 			=>	{
 				match variant.as_deref() {
-					Some("7-color")
+					Some("7" | "7-color" | "7-stripe")
 						=>	variant::lesbian_7(),
 					_
 						=>	flag::lesbian()
