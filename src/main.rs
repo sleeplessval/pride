@@ -1,4 +1,5 @@
 //!	main method module
+use std::env::var;
 
 use pico_args::Arguments;
 
@@ -50,7 +51,7 @@ fn main() {
 
 	let state = State::new(&mut args);
 
-	let subcommand = args.subcommand().unwrap();
+	let subcommand = if let Ok(Some(subcommand)) = args.subcommand() { Some(subcommand) } else { var("PRIDE_DEFAULT").ok() };
 	let variant = args.subcommand().unwrap();
 
 	//	get color vec from matched flag
