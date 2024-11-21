@@ -51,7 +51,12 @@ fn main() {
 
 	let state = State::new(&mut args);
 
-	let subcommand = if let Ok(Some(subcommand)) = args.subcommand() { Some(subcommand) } else { var("PRIDE_DEFAULT").ok() };
+	let subcommand =
+		if let Ok(Some(subcommand)) = args.subcommand() { Some(subcommand) }
+		else if let Ok(default) = var("PRIDE_DEFAULT") {
+			if default.is_empty() { None }
+			else { Some(default) }
+		} else { None };
 	let variant = args.subcommand().unwrap();
 
 	//	get color vec from matched flag
